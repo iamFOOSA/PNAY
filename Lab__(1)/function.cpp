@@ -1,6 +1,7 @@
 #include "function.h"
 #include "iostream"
 #include <array>
+#include <utility>
 
 enum class TErrorCode {
     CORRECT,
@@ -62,7 +63,7 @@ void MatrixSetting(int &rows, int &cols) {
             error = OUT_OF_RANGE;
         }
         if (error != CORRECT) {
-            std::cout << ERR[static_cast<int>(error)] << std::endl;
+            std::cout << ERR[std::to_underlying(error)] << std::endl;
         }
     } while (error != CORRECT);
 }
