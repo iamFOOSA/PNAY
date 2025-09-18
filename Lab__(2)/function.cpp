@@ -1,10 +1,10 @@
 #include "function.h"
 
 
-String::String() {
-    text = new char[1];
+String::String() : text(new char[1]) {
     text[0] = '\0';
 }
+
 
 String::String(const char *str) {
     if (str) {
@@ -25,7 +25,7 @@ String::~String() {
     delete[] text;
 }
 
-String& String::operator=(const String &other) {
+String &String::operator=(const String &other) {
     if (this != &other) {
         delete[] text;
         text = new char[strlen(other.text) + 1];
@@ -34,37 +34,23 @@ String& String::operator=(const String &other) {
     return *this;
 }
 
-String& String::operator+=(const String &other) {
-    char *temp = new char[strlen(text) + strlen(other.text) + 1];
-    strcpy(temp, text);
-    strcat(temp, other.text);
+String &String::operator+=(const String &other) {
+    auto temp = new char[strlen(text) + strlen(other.text) + 1]; // auto вместо char*
+    std::strcpy(temp, text);
+    std::strcat(temp, other.text);
     delete[] text;
     text = temp;
     return *this;
 }
 
+
 bool String::operator==(const String &other) const {
     return strcmp(text, other.text) == 0;
 }
 
-std::ostream& operator<<(std::ostream &out, const String &str) {
-    out << str.text;
-    return out;
-}
-
-
-std::istream& operator>>(std::istream &in, String &str) {
-    char buffer[1000];
-    in >> buffer;
-    delete[] str.text;
-    str.text = new char[strlen(buffer) + 1];
-    strcpy(str.text, buffer);
-    return in;
-}
-
-
 void ShowMenu() {
-    String s1, s2;
+    String s1;
+    String s2;
     int choice;
 
     do {

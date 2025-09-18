@@ -9,16 +9,32 @@ class String {
 
 public:
     String();
+
     String(const char *str);
+
     String(const String &other);
+
     ~String();
 
-    String& operator=(const String &other);
-    String& operator+=(const String &other);
+    String &operator=(const String &other);
+
+    String &operator+=(const String &other);
+
     bool operator==(const String &other) const;
 
-    friend std::ostream& operator<<(std::ostream &out, const String &str);
-    friend std::istream& operator>>(std::istream &in, String &str);
+    friend std::ostream &operator<<(std::ostream &out, const String &str) {
+        out << str.text;
+        return out;
+    }
+
+    friend std::istream &operator>>(std::istream &in, String &str) {
+        std::string temp;
+        in >> temp;  // безопасный ввод, без ограничения длины
+        delete[] str.text;
+        str.text = new char[temp.size() + 1];
+        std::strcpy(str.text, temp.c_str());
+        return in;
+    }
 };
 
 void ShowMenu();
