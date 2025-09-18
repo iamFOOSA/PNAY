@@ -32,7 +32,7 @@ public:
         in >> temp;  // безопасный ввод, без ограничения длины
         delete[] str.text;
         str.text = new char[temp.size() + 1];
-        std::strcpy(str.text, temp.c_str());
+        std::strncpy(str.text, temp.c_str(), temp.size() + 1);
         return in;
     }
 };
