@@ -29,7 +29,7 @@ public:
 
     friend std::istream &operator>>(std::istream &in, String &str) {
         std::string temp;
-        in >> temp;  // безопасный ввод, без ограничения длины
+        in >> temp;
         delete[] str.text;
         str.text = new char[temp.size() + 1];
         std::memcpy(str.text, temp.c_str(), temp.size() + 1);
