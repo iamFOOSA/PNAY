@@ -16,6 +16,10 @@ public:
 
     ~Matrix();
 
+    Matrix& operator=(const Matrix&) = delete;
+
+    Matrix& operator=(Matrix&&) = delete;
+
     void CreateMatrix() const;
 
     void ShowMatrix() const;

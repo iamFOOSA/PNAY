@@ -35,7 +35,7 @@ String &String::operator=(const String &other) {
 }
 
 String &String::operator+=(const String &other) {
-    auto temp = new char[strlen(text) + strlen(other.text) + 1]; // auto вместо char*
+    auto temp = new char[strlen(text) + strlen(other.text) + 1];
     std::strcpy(temp, text);
     std::strcat(temp, other.text);
     delete[] text;
