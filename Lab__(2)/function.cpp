@@ -8,9 +8,11 @@ String::String() : text(new char[1]) {
 
 String::String(const char *str) {
     if (str) {
-        size_t len = std::strlen(str);
+        size_t len = 0;
+        while (str[len] != '\0') ++len;
         text = new char[len + 1];
-        std::strncpy(text, str, len);
+        for (size_t i = 0; i < len; ++i)
+            text[i] = str[i];
         text[len] = '\0';
     } else {
         text = new char[1];
@@ -18,10 +20,12 @@ String::String(const char *str) {
     }
 }
 
-String::String(const String &other) {
-    size_t len = std::strlen(other.text);
+String:: String(const String &other) {
+    size_t len = 0;
+    while (other.text[len] != '\0') ++len;
     text = new char[len + 1];
-    std::strncpy(text, other.text, len);
+    for (size_t i = 0; i < len; ++i)
+        text[i] = other.text[i];
     text[len] = '\0';
 }
 
@@ -32,21 +36,26 @@ String::~String() {
 String &String::operator=(const String &other) {
     if (this != &other) {
         delete[] text;
-        size_t len = std::strlen(other.text);
+        size_t len = 0;
+        while (other.text[len] != '\0') ++len;
         text = new char[len + 1];
-        std::strncpy(text, other.text, len);
+        for (size_t i = 0; i < len; ++i)
+            text[i] = other.text[i];
         text[len] = '\0';
     }
     return *this;
 }
 
 String &String::operator+=(const String &other) {
-    size_t len1 = std::strlen(text);
-    size_t len2 = std::strlen(other.text);
+    size_t len1 = 0;
+    while (text[len1] != '\0') ++len1;
+    size_t len2 = 0;
+    while (other.text[len2] != '\0') ++len2;
     char *temp = new char[len1 + len2 + 1];
-    std::strncpy(temp, text, len1);
-    temp[len1] = '\0';
-    std::strncat(temp, other.text, len2);
+    for (size_t i = 0; i < len1; ++i)
+        temp[i] = text[i];
+    for (size_t i = 0; i < len2; ++i)
+        temp[len1 + i] = other.text[i];
     temp[len1 + len2] = '\0';
     delete[] text;
     text = temp;
@@ -54,7 +63,13 @@ String &String::operator+=(const String &other) {
 }
 
 bool String::operator==(const String &other) const {
-    return std::strcmp(text, other.text) == 0;
+    size_t i = 0;
+    while (text[i] != '\0' && other.text[i] != '\0') {
+        if (text[i] != other.text[i])
+            return false;
+        ++i;
+    }
+    return text[i] == other.text[i];
 }
 
 void ShowMenu() {

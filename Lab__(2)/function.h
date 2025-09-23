@@ -23,7 +23,11 @@ public:
     bool operator==(const String &other) const;
 
     friend std::ostream &operator<<(std::ostream &out, const String &s) {
-        out << s.text;
+        size_t i = 0;
+        while (s.text[i] != '\0') {
+            out << s.text[i];
+            ++i;
+        }
         return out;
     }
 
