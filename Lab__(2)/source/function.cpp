@@ -1,4 +1,4 @@
-#include "function.h"
+#include "../header /function.h"
 
 
 String::String() : text(new char[1]) {
