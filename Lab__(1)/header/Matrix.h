@@ -24,9 +24,9 @@ public:
 
     void show_matrix() const;
 
-    Matrix add(const Matrix &B) const;
+    Matrix add_matrix(const Matrix &B) const;
 
-    Matrix multiply(const Matrix &B) const;
+    Matrix multiply_matrix(const Matrix &B) const;
 
 };
 
