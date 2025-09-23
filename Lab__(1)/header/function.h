@@ -1,37 +1,8 @@
 #ifndef LAB___1__FUNCTION_H
 #define LAB___1__FUNCTION_H
 
-class Matrix {
-    int cols;
+void matrix_setting(int &rows, int &cols);
 
-    int rows;
-
-    float **M;
-
-public:
-
-    Matrix(int row, int cols);
-
-    Matrix(const Matrix &other);
-
-    ~Matrix();
-
-    Matrix& operator=(const Matrix&) = delete;
-
-    Matrix& operator=(Matrix&&) = delete;
-
-    void CreateMatrix() const;
-
-    void ShowMatrix() const;
-
-    Matrix ADD(const Matrix &B) const;
-
-    Matrix MULTIPLY(const Matrix &B) const;
-
-};
-
-void MatrixSetting(int &rows, int &cols);
-
-void ShowMenu();
+void show_menu();
 
 #endif

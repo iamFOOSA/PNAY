@@ -1,6 +1,7 @@
 #include "../header/function.h"
+#include "../header/Matrix.h"
 
 int main() {
-    ShowMenu();
+    show_menu();
     return 0;
 }

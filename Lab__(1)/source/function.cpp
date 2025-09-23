@@ -1,4 +1,5 @@
 #include "../header/function.h"
+#include "../header/Matrix.h"
 #include "iostream"
 #include <array>
 #include <utility>
@@ -44,7 +45,7 @@ const std::array<std::string, 4> ERR = {
         "Error. Out of Range. Please try again. ",
         "Error. incorrect size matrix. please try again."};
 
-void MatrixSetting(int &rows, int &cols) {
+void matrix_setting(int &rows, int &cols) {
     using
     enum TErrorCode;
     TErrorCode error;
@@ -68,7 +69,7 @@ void MatrixSetting(int &rows, int &cols) {
     } while (error != CORRECT);
 }
 
-void Matrix::CreateMatrix() const {
+void Matrix::create_matrix() const {
     std::cout << "please write elements of the matrix through the space" << std::endl;
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
@@ -77,7 +78,7 @@ void Matrix::CreateMatrix() const {
     }
 }
 
-void Matrix::ShowMatrix() const {
+void Matrix::show_matrix() const {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
             std::cout << M[i][j] << " ";
@@ -86,7 +87,7 @@ void Matrix::ShowMatrix() const {
     }
 }
 
-Matrix Matrix::ADD(const Matrix &B) const {
+Matrix Matrix::add(const Matrix &B) const {
     Matrix C(rows, cols);
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
@@ -96,7 +97,7 @@ Matrix Matrix::ADD(const Matrix &B) const {
     return C;
 }
 
-Matrix Matrix::MULTIPLY(const Matrix &B) const {
+Matrix Matrix::multiply(const Matrix &B) const {
     Matrix C(rows, B.cols);
 
     for (int i = 0; i < rows; i++)
@@ -109,7 +110,7 @@ Matrix Matrix::MULTIPLY(const Matrix &B) const {
     return C;
 }
 
-void ShowMenu() {
+void show_menu() {
     int choice;
     do {
         std::cout << "\n    Menu    \n";
@@ -124,30 +125,30 @@ void ShowMenu() {
         int rows1;
         int cols1;
         std::cout << "Matrix A:\n";
-        MatrixSetting(rows1, cols1);
+        matrix_setting(rows1, cols1);
         Matrix A(rows1, cols1);
-        A.CreateMatrix();
+        A.create_matrix();
 
         int rows2;
         int cols2;
         std::cout << "Matrix B:\n";
-        MatrixSetting(rows2, cols2);
+        matrix_setting(rows2, cols2);
         Matrix B(rows2, cols2);
-        B.CreateMatrix();
+        B.create_matrix();
 
         if (choice == 1) {
             if (rows1 == rows2 && cols1 == cols2) {
-                Matrix C = A.ADD(B);
+                Matrix C = A.add(B);
                 std::cout << "Result Matrix:\n";
-                C.ShowMatrix();
+                C.show_matrix();
             } else {
                 std::cout << "ERROR, please try again. Must be(rows1 = rows2) and (cols1 = cols2) \n";
             }
         } else if (choice == 2) {
             if (cols1 == rows2) {
-                Matrix D = A.MULTIPLY(B);
+                Matrix D = A.multiply(B);
                 std::cout << "Result Matrix:\n";
-                D.ShowMatrix();
+                D.show_matrix();
             } else {
                 std::cout << "ERROR, please try again. Must be(cols1 = rows2)\n";
             }

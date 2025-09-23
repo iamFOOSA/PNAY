@@ -1,6 +1,6 @@
 #include "../header /function.h"
 
 int main() {
-    ShowMenu();
+    show_menu();
     return 0;
 }

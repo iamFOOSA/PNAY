@@ -1,5 +1,5 @@
 #include "../header /function.h"
-
+#include "../header /class.h"
 
 String::String() : text(new char[1]) {
     text[0] = '\0';
@@ -33,7 +33,7 @@ String::~String() {
     delete[] text;
 }
 
-void ShowMenu() {
+void show_menu() {
     String s1;
     String s2;
     int choice;
