@@ -15,4 +15,4 @@
 б) функция производит сложение двух матриц.
 Память под матрицы отводить динамически. Использовать конструктор с параметрами. Деструктор должен освобождать память, выделенную под матрицы.
 ## 🌐 Ссылка на Sonar
-[Ссылка на Sonar]([https://example.com](https://sonarcloud.io/project/issues?impactSeverities=HIGH&issueStatuses=OPEN%2CCONFIRMED&id=iamFOOSA_PNAY&open=AZlejTQlS2hnDgcu4_37))
+([https://example.com](https://sonarcloud.io/project/issues?impactSeverities=HIGH&issueStatuses=OPEN%2CCONFIRMED&id=iamFOOSA_PNAY&open=AZlejTQlS2hnDgcu4_37))
