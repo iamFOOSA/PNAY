@@ -46,13 +46,15 @@ public:
     }
 
     bool operator==(const String &other) const {
-        size_t i = 0;
-        while (text[i] != '\0' && other.text[i] != '\0') {
-            if (text[i] != other.text[i])
+        const char *p1 = text;
+        const char *p2 = other.text;
+        while (*p1 != '\0' && *p2 != '\0') {
+            if (*p1 != *p2)
                 return false;
-            ++i;
+            ++p1;
+            ++p2;
         }
-        return text[i] == '\0' && other.text[i] == '\0';
+        return *p1 == '\0' && *p2 == '\0';
     }
 
     friend std::ostream &operator<<(std::ostream &out, const String &s) {
