@@ -22,17 +22,15 @@ public:
 
     bool operator==(const String &other) const;
 
-    friend std::ostream &operator<<(std::ostream &out, const String &str) {
-        out << str.text;
+    friend std::ostream &operator<<(std::ostream &out, const String &s) {
+        out << s.text;
         return out;
     }
 
-    friend std::istream &operator>>(std::istream &in, String &str) {
-        std::string temp;
-        in >> temp;
-        delete[] str.text;
-        str.text = new char[temp.size() + 1];
-        std::memcpy(str.text, temp.c_str(), temp.size() + 1);
+    friend std::istream &operator>>(std::istream &in, String &s) {
+        char buffer[1024];
+        in >> buffer;
+        s = String(buffer);
         return in;
     }
 };

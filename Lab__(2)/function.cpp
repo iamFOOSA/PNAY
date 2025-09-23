@@ -8,8 +8,10 @@ String::String() : text(new char[1]) {
 
 String::String(const char *str) {
     if (str) {
-        text = new char[strlen(str) + 1];
-        strcpy(text, str);
+        size_t len = std::strlen(str);
+        text = new char[len + 1];
+        std::strncpy(text, str, len);
+        text[len] = '\0';
     } else {
         text = new char[1];
         text[0] = '\0';
@@ -17,8 +19,10 @@ String::String(const char *str) {
 }
 
 String::String(const String &other) {
-    text = new char[strlen(other.text) + 1];
-    strcpy(text, other.text);
+    size_t len = std::strlen(other.text);
+    text = new char[len + 1];
+    std::strncpy(text, other.text, len);
+    text[len] = '\0';
 }
 
 String::~String() {
@@ -28,24 +32,29 @@ String::~String() {
 String &String::operator=(const String &other) {
     if (this != &other) {
         delete[] text;
-        text = new char[strlen(other.text) + 1];
-        strcpy(text, other.text);
+        size_t len = std::strlen(other.text);
+        text = new char[len + 1];
+        std::strncpy(text, other.text, len);
+        text[len] = '\0';
     }
     return *this;
 }
 
 String &String::operator+=(const String &other) {
-    auto temp = new char[strlen(text) + strlen(other.text) + 1];
-    std::strcpy(temp, text);
-    std::strcat(temp, other.text);
+    size_t len1 = std::strlen(text);
+    size_t len2 = std::strlen(other.text);
+    char *temp = new char[len1 + len2 + 1];
+    std::strncpy(temp, text, len1);
+    temp[len1] = '\0';
+    std::strncat(temp, other.text, len2);
+    temp[len1 + len2] = '\0';
     delete[] text;
     text = temp;
     return *this;
 }
 
-
 bool String::operator==(const String &other) const {
-    return strcmp(text, other.text) == 0;
+    return std::strcmp(text, other.text) == 0;
 }
 
 void ShowMenu() {
