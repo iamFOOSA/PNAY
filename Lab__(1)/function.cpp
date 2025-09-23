@@ -141,7 +141,7 @@ void ShowMenu() {
                 std::cout << "Result Matrix:\n";
                 C.ShowMatrix();
             } else {
-                std::cout << "ERROR, please try again.\n";
+                std::cout << "ERROR, please try again. Must be(rows1 = rows2) and (cols1 = cols2) \n";
             }
         } else if (choice == 2) {
             if (cols1 == rows2) {
@@ -149,7 +149,7 @@ void ShowMenu() {
                 std::cout << "Result Matrix:\n";
                 D.ShowMatrix();
             } else {
-                std::cout << "ERROR, please try again.\n";
+                std::cout << "ERROR, please try again. Must be(cols1 = rows2)\n";
             }
         } else {
             std::cout << "ERROR, please try again.\n";
