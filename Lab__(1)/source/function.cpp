@@ -61,6 +61,7 @@ void show_menu() {
         matrix_setting(rows1, cols1);
         Matrix A(rows1, cols1);
         A.create_matrix();
+        A.show_matrix();
 
         int rows2;
         int cols2;
@@ -68,6 +69,7 @@ void show_menu() {
         matrix_setting(rows2, cols2);
         Matrix B(rows2, cols2);
         B.create_matrix();
+        B.show_matrix();
 
         if (choice == 1) {
             if (rows1 == rows2 && cols1 == cols2) {

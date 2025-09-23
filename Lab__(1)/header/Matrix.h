@@ -1,4 +1,3 @@
-
 #ifndef LAB___1__MATRIX_H
 #define LAB___1__MATRIX_H
 class Matrix {
@@ -29,6 +28,4 @@ public:
     Matrix multiply_matrix(const Matrix &B) const;
 
 };
-
-
 #endif
