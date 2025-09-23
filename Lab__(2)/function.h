@@ -20,21 +20,20 @@ public:
 
     String &operator+=(const String &other);
 
-    bool operator==(const String &other) const;
-
-    friend std::ostream &operator<<(std::ostream &out, const String &s) {
+    bool operator==(const String &other) const {
         size_t i = 0;
-        while (s.text[i] != '\0') {
-            out << s.text[i];
+        while (text[i] != '\0' && other.text[i] != '\0') {
+            if (text[i] != other.text[i])
+                return false;
             ++i;
         }
-        return out;
+        return text[i] == '\0' && other.text[i] == '\0';
     }
 
     friend std::istream &operator>>(std::istream &in, String &s) {
-        char buffer[1024];
-        in >> buffer;
-        s = String(buffer);
+        std::string temp;
+        in >> temp;
+        s = String(temp.c_str());
         return in;
     }
 };
