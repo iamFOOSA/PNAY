@@ -45,7 +45,7 @@ public:
         return *this;
     }
 
-    bool operator==(const String &other) const {
+    /*bool operator==(const String &other) const {
         const char *p1 = text;
         const char *p2 = other.text;
         while (*p1 != '\0' && *p2 != '\0') {
@@ -55,6 +55,9 @@ public:
             ++p2;
         }
         return *p1 == *p2;
+    }*/
+    bool operator==(const String &other) const {
+        return std::strcmp(text, other.text) == 0;
     }
 
     friend std::ostream &operator<<(std::ostream &out, const String &s) {
