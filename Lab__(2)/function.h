@@ -54,7 +54,7 @@ public:
             ++p1;
             ++p2;
         }
-        return *p1 == '\0' && *p2 == '\0';
+        return *p1 == *p2;
     }
 
     friend std::ostream &operator<<(std::ostream &out, const String &s) {
