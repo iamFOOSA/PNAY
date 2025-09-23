@@ -25,7 +25,7 @@ void matrix_setting(int &rows, int &cols) {
     TErrorCode error;
     do {
         error = CORRECT;
-        std::cout << "Please write size of matrix through the space in the range " << MIN_ARR << " .. " << MAX_ARR
+        std::cout << "Please write size of matrix through the ENTER in the range " << MIN_ARR << " .. " << MAX_ARR
                   << std::endl;
         std::cin >> rows;
         std::cin >> cols;
