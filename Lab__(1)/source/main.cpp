@@ -1,4 +1,4 @@
-#include "function.h"
+#include "../header/function.h"
 
 int main() {
     ShowMenu();

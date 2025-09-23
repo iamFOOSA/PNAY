@@ -1,4 +1,4 @@
-#include "function.h"
+#include "../header/function.h"
 #include "iostream"
 #include <array>
 #include <utility>
