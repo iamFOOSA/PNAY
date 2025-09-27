@@ -19,8 +19,6 @@ Matrix::Matrix(const Matrix &other)
             M[i][j] = other.M[i][j];
         }
     }
-
-
 }
 
 Matrix::~Matrix() {
