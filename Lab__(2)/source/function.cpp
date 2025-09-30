@@ -1,38 +1,6 @@
 #include "../header /function.h"
 #include "../header /class.h"
 
-String::String() : text(new char[1]) {
-    text[0] = '\0';
-}
-
-
-String::String(const char *str) {
-    if (str) {
-        size_t len = 0;
-        while (str[len] != '\0') ++len;
-        text = new char[len + 1];
-        for (size_t i = 0; i < len; ++i)
-            text[i] = str[i];
-        text[len] = '\0';
-    } else {
-        text = new char[1];
-        text[0] = '\0';
-    }
-}
-
-String:: String(const String &other) {
-    size_t len = 0;
-    while (other.text[len] != '\0') ++len;
-    text = new char[len + 1];
-    for (size_t i = 0; i < len; ++i)
-        text[i] = other.text[i];
-    text[len] = '\0';
-}
-
-String::~String() {
-    delete[] text;
-}
-
 void show_menu() {
     String s1;
     String s2;
