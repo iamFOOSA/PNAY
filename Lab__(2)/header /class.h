@@ -8,15 +8,38 @@ class String {
     char *text;
 
 public:
-    String();
+    String():text(new char[1]) {
+        text[0] = '\0';
+    };
 
-    explicit String(const char *str);
+    explicit String(const char *str){
+        if (str) {
+            size_t len = 0;
+            while (str[len] != '\0') ++len;
+            text = new char[len + 1];
+            for (size_t i = 0; i < len; ++i)
+                text[i] = str[i];
+            text[len] = '\0';
+        } else {
+            text = new char[1];
+            text[0] = '\0';
+        }
+    };
 
-    String(const String &other);
+    String(const String &other){
+        size_t len = 0;
+        while (other.text[len] != '\0') ++len;
+        text = new char[len + 1];
+        for (size_t i = 0; i < len; ++i)
+            text[i] = other.text[i];
+        text[len] = '\0';
+    };
 
-    ~String();
+    ~String(){
+        delete[] text;
+    };
 
-    String &operator=(const String &other){
+    String &operator=(const String &other) {
         if (this != &other) {
             delete[] text;
             size_t len = 0;
@@ -29,7 +52,7 @@ public:
         return *this;
     }
 
-    String &operator+=(const String &other){
+    String &operator+=(const String &other) {
         size_t len1 = 0;
         while (text[len1] != '\0') ++len1;
         size_t len2 = 0;
@@ -65,37 +88,4 @@ public:
         return in;
     }
 };
-
-String::String() : text(new char[1]) {
-    text[0] = '\0';
-}
-
-
-String::String(const char *str) {
-    if (str) {
-        size_t len = 0;
-        while (str[len] != '\0') ++len;
-        text = new char[len + 1];
-        for (size_t i = 0; i < len; ++i)
-            text[i] = str[i];
-        text[len] = '\0';
-    } else {
-        text = new char[1];
-        text[0] = '\0';
-    }
-}
-
-String:: String(const String &other) {
-    size_t len = 0;
-    while (other.text[len] != '\0') ++len;
-    text = new char[len + 1];
-    for (size_t i = 0; i < len; ++i)
-        text[i] = other.text[i];
-    text[len] = '\0';
-}
-
-String::~String() {
-    delete[] text;
-}
-
 #endif
