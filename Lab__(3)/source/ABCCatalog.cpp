@@ -14,6 +14,7 @@ void ABCCatalog::show_all_sorted() const {
         return;
     }
 
+    if (card_count <= 0) return;
     auto titles = new string[card_count];
 
     for (int i = 0; i < card_count; i++) {
@@ -22,7 +23,7 @@ void ABCCatalog::show_all_sorted() const {
 
     for (int i = 0; i < card_count - 1; i++) {
         for (int j = 0; j < card_count - i - 1; j++) {
-            if (titles[j] > titles[j + 1]) {
+            if (j >= 0 && j < card_count - 1 && titles[j] > titles[j + 1]) {
                 swap(titles[j], titles[j + 1]);
             }
         }
