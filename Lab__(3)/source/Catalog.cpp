@@ -11,7 +11,9 @@ Catalog::~Catalog() {
 }
 
 Catalog::Catalog(Catalog&& other) noexcept
-        : cards(other.cards), card_count(other.card_count), capacity(other.capacity) {
+        : capacity(other.capacity),
+          cards(other.cards),
+          card_count(other.card_count) {
     other.cards = nullptr;
     other.card_count = 0;
     other.capacity = 0;
