@@ -5,7 +5,7 @@
 
 
 class LibCard {
-protected:
+private:
     std::string author;
     std::string title;
     std::string thematic_code;
