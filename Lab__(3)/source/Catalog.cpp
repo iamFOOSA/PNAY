@@ -15,12 +15,15 @@ Catalog::~Catalog() {
 void Catalog::add_card(LibCard *card) {
     if (card_count >= capacity) {
         int new_capacity = (capacity == 0) ? 2 : capacity * 2;
-        auto new_cards = new LibCard *[new_capacity];
 
+        if (new_capacity <= card_count) {
+            new_capacity = card_count + 1;
+        }
+
+        auto new_cards = new LibCard *[new_capacity];
         for (int i = 0; i < card_count; i++) {
             new_cards[i] = cards[i];
         }
-
         delete[] cards;
         cards = new_cards;
         capacity = new_capacity;
