@@ -3,17 +3,25 @@
 
 #include "../header/libcard.h"
 #include <string>
+
 class Catalog {
-protected:
-    LibCard **cards{};
-    int card_count = 0;
-    int capacity = 0;
+private:
+    LibCard **cards;
+    int card_count;
+    int capacity;
 
 public:
     Catalog();
 
     ~Catalog();
 
+    Catalog(const Catalog &) = delete;
+
+    Catalog &operator=(const Catalog &) = delete;
+
+    Catalog(Catalog &&other) noexcept;
+
+    Catalog &operator=(Catalog &&other) noexcept;
 
     void add_card(LibCard *card);
 
