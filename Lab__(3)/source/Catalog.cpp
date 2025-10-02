@@ -26,12 +26,9 @@ void Catalog::add_card(LibCard *card) {
         capacity = new_capacity;
     }
 
-    if (card_count < capacity) {
-        cards[card_count] = card;
-        card_count++;
-    }
+    cards[card_count] = card;
+    card_count++;
 }
-
 void Catalog::search_by_cipher(const string &cipher) const {
     cout << "Поиск по шифру '" << cipher << "':" << endl;
     bool found = false;

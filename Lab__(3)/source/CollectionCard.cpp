@@ -28,8 +28,6 @@ void CollectionCard::add_article(Article *article) {
         capacity = new_capacity;
     }
 
-    if (article_count < capacity) {
-        articles[article_count] = article;
-        article_count++;
-    }
+    articles[article_count] = article;
+    article_count++;
 }
