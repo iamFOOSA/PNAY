@@ -6,7 +6,7 @@
 #include <iostream>
 #include <array>
 
-
+using namespace std;
 void show_menu() {
     auto *main_catalog = new Catalog();
     auto *thematic_catalog = new ThematicCatalog();

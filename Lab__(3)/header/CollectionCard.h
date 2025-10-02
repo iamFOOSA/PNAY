@@ -3,6 +3,7 @@
 
 #include "../header/SelfPublishCard.h"
 #include "../header/article.h"
+#include <string>
 
 class CollectionCard : public SelfPublishCard {
 private:
@@ -11,8 +12,8 @@ private:
     int capacity = 0;
 
 public:
-    CollectionCard(const string &auth, const string &titl, const string &code,
-                   const string &publ, int yr, int circ, int pages);
+    CollectionCard(const std::string &auth, const std::string &titl, const std::string &code,
+                   const std::string &publ, int yr, int circ, int pages);
 
     ~CollectionCard();
 

@@ -2,7 +2,7 @@
 #define LAB___3__CATALOG_H
 
 #include "../header/libcard.h"
-
+#include <string>
 class Catalog {
 protected:
     LibCard **cards{};
@@ -17,9 +17,9 @@ public:
 
     void add_card(LibCard *card);
 
-    void search_by_cipher(const string &cipher) const;
+    void search_by_cipher(const std::string &cipher) const;
 
-    void search_by_author_or_title(const string &search_term) const;
+    void search_by_author_or_title(const std::string &search_term) const;
 };
 
 

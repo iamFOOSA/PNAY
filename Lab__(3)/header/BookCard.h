@@ -3,14 +3,15 @@
 
 #include "../header/CollectionCard.h"
 #include "../header/article.h"
+#include <string>
 
 class BookCard : public SelfPublishCard {
 private:
     Article *book_article;
 
 public:
-    BookCard(const string &auth, const string &titl,
-             const string &code, const string &publ,
+    BookCard(const std::string &auth, const std::string &titl,
+             const std::string &code, const std::string &publ,
              int yr, int circ, int pages, Article *article);
 
     ~BookCard();

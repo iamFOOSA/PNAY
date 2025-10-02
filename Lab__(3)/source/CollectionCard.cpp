@@ -1,7 +1,7 @@
 #include "../header/CollectionCard.h"
-
-CollectionCard::CollectionCard(const string &auth, const string &titl,
-                               const string &code, const string &publ,
+#include <string>
+CollectionCard::CollectionCard(const std::string &auth, const std::string &titl,
+                               const std::string &code, const std::string &publ,
                                int yr, int circ, int pages)
         : SelfPublishCard(auth, titl, code, publ, yr, circ, pages),
           articles(nullptr), article_count(0), capacity(0) {
