@@ -7,7 +7,7 @@
 
 class CollectionCard : public SelfPublishCard {
 private:
-    Article **articles;
+    Article **articles = nullptr;
     int article_count = 0;
     int capacity = 0;
 

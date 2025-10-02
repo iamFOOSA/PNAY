@@ -3,8 +3,7 @@
 CollectionCard::CollectionCard(const std::string &auth, const std::string &titl,
                                const std::string &code, const std::string &publ,
                                int yr, int circ, int pages)
-        : SelfPublishCard(auth, titl, code, publ, yr, circ, pages),
-          articles(nullptr), article_count(0), capacity(0) {
+        : SelfPublishCard(auth, titl, code, publ, yr, circ, pages){
 }
 
 CollectionCard::~CollectionCard() {
