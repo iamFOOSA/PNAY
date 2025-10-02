@@ -12,12 +12,22 @@ private:
     int capacity = 0;
 
 public:
-    CollectionCard(const std::string &auth, const std::string &titl, const std::string &code,
-                   const std::string &publ, int yr, int circ, int pages);
+    CollectionCard(const std::string &auth, const std::string &titl,
+                   const std::string &code, const std::string &publ,
+                   int yr, int circ, int pages);
 
     ~CollectionCard();
 
+    CollectionCard(const CollectionCard &) = delete;
+
+    CollectionCard &operator=(const CollectionCard &) = delete;
+
+    CollectionCard(CollectionCard &&other) noexcept;
+
+    CollectionCard &operator=(CollectionCard &&other) noexcept;
+
     void add_article(Article *article);
+
 };
 
 #endif

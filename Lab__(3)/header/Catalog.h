@@ -6,10 +6,11 @@
 
 class Catalog {
 private:
-    LibCard **cards;
-    int card_count;
     int capacity;
 
+protected:
+    int card_count;
+    LibCard **cards;
 public:
     Catalog();
 
