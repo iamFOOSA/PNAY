@@ -20,13 +20,13 @@ BookCard &BookCard::operator=(const BookCard &other) {
 }
 
 BookCard::BookCard(BookCard &&other) noexcept
-        : SelfPublishCard(std::move(other)), book_article(other.book_article) {
+        : SelfPublishCard(other), book_article(other.book_article) {
     other.book_article = nullptr;
 }
 
 BookCard &BookCard::operator=(BookCard &&other) noexcept {
     if (this != &other) {
-        SelfPublishCard::operator=(std::move(other));
+        SelfPublishCard::operator=(other);
         delete book_article;
         book_article = other.book_article;
         other.book_article = nullptr;
