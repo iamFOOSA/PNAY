@@ -4,20 +4,17 @@
 #include "../header/libcard.h"
 #include <string>
 
-using namespace std;
-
 class SelfPublishCard : public LibCard {
 protected:
-    string publisher;
+    std::string publisher;
     int year;
     int circulation;
     int page_count;
 
 public:
-    SelfPublishCard(const string &auth, const string &titl,
-                    const string &code, const string &publ,
+    SelfPublishCard(const std::string &auth, const std::string &titl,
+                    const std::string &code, const std::string &publ,
                     int yr, int circ, int pages);
-
     ~SelfPublishCard() = default;
 };
 
