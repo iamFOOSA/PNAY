@@ -9,8 +9,9 @@ private:
     int capacity = 0;
 
 protected:
-    int card_count = 0;
     LibCard **cards = nullptr;
+    int card_count = 0;
+
 public:
     Catalog();
 
