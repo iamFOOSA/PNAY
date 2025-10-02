@@ -77,8 +77,8 @@ void Catalog::search_by_author_or_title(const std::string& search_term) const {
     bool found = false;
 
     for (int i = 0; i < card_count; i++) {
-        if (cards[i]->get_author().find(search_term) != std::string::npos ||
-            cards[i]->get_title().find(search_term) != std::string::npos) {
+        if (cards[i]->get_author().contains(search_term) ||
+            cards[i]->get_title().contains(search_term)) {
             std::cout << "Найдено: " << cards[i]->get_alphabetical_search() << std::endl;
             found = true;
         }
