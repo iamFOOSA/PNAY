@@ -5,7 +5,7 @@
 #include <string>
 
 class SelfPublishCard : public LibCard {
-protected:
+private:
     std::string publisher;
     int year;
     int circulation;
@@ -15,8 +15,8 @@ public:
     SelfPublishCard(const std::string &auth, const std::string &titl,
                     const std::string &code, const std::string &publ,
                     int yr, int circ, int pages);
+
     ~SelfPublishCard() = default;
 };
-
 
 #endif
