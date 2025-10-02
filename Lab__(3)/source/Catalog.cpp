@@ -1,8 +1,6 @@
 #include "../header/Catalog.h"
 #include <iostream>
 
-Catalog::Catalog()  {}
-
 Catalog::~Catalog() {
     for (int i = 0; i < card_count; i++) {
         delete cards[i];

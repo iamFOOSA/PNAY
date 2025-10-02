@@ -13,9 +13,9 @@ protected:
     int card_count = 0;
 
 public:
-    Catalog();
+    Catalog() = default;
 
-    ~Catalog();
+    ~Catalog() ;
 
     Catalog(const Catalog &) = delete;
 
