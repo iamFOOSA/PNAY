@@ -7,6 +7,7 @@
 #include <array>
 
 using namespace std;
+
 void show_menu() {
     auto *main_catalog = new Catalog();
     auto *thematic_catalog = new ThematicCatalog();
@@ -115,8 +116,8 @@ void show_menu() {
                 cin.ignore();
 
                 auto *book_article = new Article(title, author);
-                auto *book = new BookCard(
-                        author, title, code, publisher, year, circulation, pages, book_article);
+                auto book = new BookCard(BookData{author, title, code, publisher, year, circulation, pages},
+                                         book_article);
 
                 main_catalog->add_card(book);
                 thematic_catalog->add_card(book);

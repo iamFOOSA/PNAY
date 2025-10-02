@@ -5,14 +5,25 @@
 #include "../header/article.h"
 #include <string>
 
+struct BookData {
+    std::string author;
+    std::string title;
+    std::string code;
+    std::string publisher;
+    int year;
+    int circulation;
+    int pages;
+};
+
 class BookCard : public SelfPublishCard {
 private:
     Article *book_article;
 
 public:
-    BookCard(const std::string &auth, const std::string &titl,
-             const std::string &code, const std::string &publ,
-             int yr, int circ, int pages, Article *article);
+    BookCard(const BookData &data, Article *article)
+            : SelfPublishCard(data.author, data.title, data.code,
+                              data.publisher, data.year, data.circulation, data.pages),
+              book_article(article) {}
 
     ~BookCard();
 
