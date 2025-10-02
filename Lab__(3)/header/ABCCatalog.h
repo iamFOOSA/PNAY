@@ -5,7 +5,7 @@
 
 class ABCCatalog : public Catalog {
 public:
-    ~ABCCatalog();
+    ~ABCCatalog() = default;
 
     void show_all_sorted() const;
 };

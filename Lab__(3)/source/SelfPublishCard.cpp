@@ -8,6 +8,3 @@ SelfPublishCard::SelfPublishCard(const string &auth, const string &titl,
           circulation(circ), page_count(pages) {
 
 }
-
-SelfPublishCard::~SelfPublishCard() {
-}

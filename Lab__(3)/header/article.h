@@ -3,21 +3,20 @@
 
 #include <string>
 
-using namespace std;
 
 class Article {
 private:
-    string title;
-    string author_name;
+    std::string title;
+    std::string author_name;
 
 public:
-    Article(const string &article_title, const string &author);
+    Article(const std::string &article_title, const std::string &author);
 
     ~Article();
 
-    string get_title() const;
+    std::string get_title() const;
 
-    string get_author_name() const;
+    std::string get_author_name() const;
 };
 
 #endif

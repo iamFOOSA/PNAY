@@ -3,8 +3,6 @@
 
 using namespace std;
 
-ABCCatalog::~ABCCatalog() {
-}
 
 void ABCCatalog::show_all_sorted() const {
     cout << "Все карточки в алфавитном порядке:" << endl;

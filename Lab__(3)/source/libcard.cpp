@@ -1,24 +1,24 @@
 #include "../header/libcard.h"
 
 
-LibCard::LibCard(const string &auth, const string &titl, const string &code)
+LibCard::LibCard(const std::string &auth, const std::string &titl, const std::string &code)
         : author(auth), title(titl), thematic_code(code) {
 }
 
 LibCard::~LibCard() = default;
 
-string LibCard::get_author() const {
+std::string LibCard::get_author() const {
     return author;
 }
 
-string LibCard::get_title() const {
+std::string LibCard::get_title() const {
     return title;
 }
 
-string LibCard::get_thematic_code() const {
+std::string LibCard::get_thematic_code() const {
     return thematic_code;
 }
 
-string LibCard::get_alphabetical_search() const {
+std::string LibCard::get_alphabetical_search() const {
     return author + " - " + title;
 }

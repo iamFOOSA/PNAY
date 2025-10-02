@@ -3,26 +3,25 @@
 
 #include <string>
 
-using namespace std;
 
 class LibCard {
 protected:
-    string author;
-    string title;
-    string thematic_code;
+    std::string author;
+    std::string title;
+    std::string thematic_code;
 
 public:
-    LibCard(const string &auth, const string &titl, const string &code);
+    LibCard(const std::string &auth, const std::string &titl, const std::string &code);
 
     ~LibCard();
 
-    string get_author() const;
+    std::string get_author() const;
 
-    string get_title() const;
+    std::string get_title() const;
 
-    string get_thematic_code() const;
+    std::string get_thematic_code() const;
 
-    string get_alphabetical_search() const;
+    std::string get_alphabetical_search() const;
 };
 
 

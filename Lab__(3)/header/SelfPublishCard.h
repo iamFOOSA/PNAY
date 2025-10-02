@@ -18,7 +18,7 @@ public:
                     const string &code, const string &publ,
                     int yr, int circ, int pages);
 
-    ~SelfPublishCard();
+    ~SelfPublishCard() = default;
 };
 
 
