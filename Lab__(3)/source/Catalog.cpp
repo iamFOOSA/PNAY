@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Catalog::Catalog() : cards(nullptr), card_count(0), capacity(0) {}
+Catalog::Catalog() = default;
 
 Catalog::~Catalog() {
     for (int i = 0; i < card_count; i++) {
@@ -15,7 +15,7 @@ Catalog::~Catalog() {
 void Catalog::add_card(LibCard *card) {
     if (card_count >= capacity) {
         int new_capacity = (capacity == 0) ? 2 : capacity * 2;
-        LibCard **new_cards = new LibCard *[new_capacity];
+        auto **new_cards = new LibCard *[new_capacity];
 
         for (int i = 0; i < card_count; i++) {
             new_cards[i] = cards[i];
@@ -51,8 +51,8 @@ void Catalog::search_by_author_or_title(const string &search_term) const {
     bool found = false;
 
     for (int i = 0; i < card_count; i++) {
-        if (cards[i]->get_author().find(search_term) != string::npos ||
-            cards[i]->get_title().find(search_term) != string::npos) {
+        if (cards[i]->get_author().contains(search_term) ||
+            cards[i]->get_title().contains(search_term)) {
             cout << "Найдено: " << cards[i]->get_alphabetical_search() << endl;
             found = true;
         }

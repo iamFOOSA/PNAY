@@ -9,7 +9,7 @@ ABCCatalog::~ABCCatalog() {
 void ABCCatalog::show_all_sorted() const {
     cout << "Все карточки в алфавитном порядке:" << endl;
 
-    string *titles = new string[card_count];
+    auto *titles = new string[card_count];
     for (int i = 0; i < card_count; i++) {
         titles[i] = cards[i]->get_alphabetical_search();
     }

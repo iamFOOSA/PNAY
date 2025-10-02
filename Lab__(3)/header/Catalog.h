@@ -5,9 +5,9 @@
 
 class Catalog {
 protected:
-    LibCard **cards;
-    int card_count;
-    int capacity;
+    LibCard **cards{};
+    int card_count = 0;
+    int capacity = 0;
 
 public:
     Catalog();

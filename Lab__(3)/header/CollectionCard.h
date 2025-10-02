@@ -7,8 +7,8 @@
 class CollectionCard : public SelfPublishCard {
 private:
     Article **articles;
-    int article_count;
-    int capacity;
+    int article_count = 0;
+    int capacity = 0;
 
 public:
     CollectionCard(const string &auth, const string &titl, const string &code,

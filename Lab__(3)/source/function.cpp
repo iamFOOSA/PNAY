@@ -4,14 +4,15 @@
 #include "../header/function.h"
 #include "../header/ThematicCatalog.h"
 #include <iostream>
+#include <array>
 
 
 void show_menu() {
-    Catalog *main_catalog = new Catalog();
-    ThematicCatalog *thematic_catalog = new ThematicCatalog();
-    ABCCatalog *abc_catalog = new ABCCatalog();
+    auto *main_catalog = new Catalog();
+    auto *thematic_catalog = new ThematicCatalog();
+    auto *abc_catalog = new ABCCatalog();
 
-    CollectionCard *collections[100];
+    array<CollectionCard *, 100> collections{};
     int collection_count = 0;
 
     int choice;
@@ -31,8 +32,13 @@ void show_menu() {
 
         switch (choice) {
             case 1: {
-                string author, title, code, publisher;
-                int year, circulation, pages;
+                string author;
+                string title;
+                string code;
+                string publisher;
+                int year;
+                int circulation;
+                int pages;
 
                 cout << "Автор сборника: ";
                 getline(cin, author);
@@ -50,7 +56,7 @@ void show_menu() {
                 cin >> pages;
                 cin.ignore();
 
-                CollectionCard *collection = new CollectionCard(
+                auto *collection = new CollectionCard(
                         author, title, code, publisher, year, circulation, pages);
 
                 if (collection_count < 100) {
@@ -64,13 +70,14 @@ void show_menu() {
                 cin.ignore();
 
                 for (int i = 0; i < article_count; i++) {
-                    string article_author, article_title;
+                    string article_author;
+                    string article_title;
                     cout << "Статья " << (i + 1) << " автор: ";
                     getline(cin, article_author);
                     cout << "Статья " << (i + 1) << " название: ";
                     getline(cin, article_title);
 
-                    Article *article = new Article(article_title, article_author);
+                    auto *article = new Article(article_title, article_author);
                     collection->add_article(article);
                 }
 
@@ -83,8 +90,13 @@ void show_menu() {
             }
 
             case 2: {
-                string author, title, code, publisher;
-                int year, circulation, pages;
+                string author;
+                string title;
+                string code;
+                string publisher;
+                int year;
+                int circulation;
+                int pages;
 
                 cout << "Автор: ";
                 getline(cin, author);
@@ -102,8 +114,8 @@ void show_menu() {
                 cin >> pages;
                 cin.ignore();
 
-                Article *book_article = new Article(title, author);
-                BookCard *book = new BookCard(
+                auto *book_article = new Article(title, author);
+                auto *book = new BookCard(
                         author, title, code, publisher, year, circulation, pages, book_article);
 
                 main_catalog->add_card(book);
@@ -135,13 +147,14 @@ void show_menu() {
                     break;
                 }
 
-                string article_author, article_title;
+                string article_author;
+                string article_title;
                 cout << "Автор статьи: ";
                 getline(cin, article_author);
                 cout << "Название статьи: ";
                 getline(cin, article_title);
 
-                Article *new_article = new Article(article_title, article_author);
+                auto *new_article = new Article(article_title, article_author);
                 collections[collection_choice - 1]->add_article(new_article);
 
                 cout << "Статья добавлена!" << endl;

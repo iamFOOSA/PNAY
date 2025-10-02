@@ -3,8 +3,9 @@
 CollectionCard::CollectionCard(const string &auth, const string &titl,
                                const string &code, const string &publ,
                                int yr, int circ, int pages)
-        : SelfPublishCard(auth, titl, code, publ, yr, circ, pages),
-          articles(nullptr), article_count(0), capacity(0) {}
+        : SelfPublishCard(auth, titl, code, publ, yr, circ, pages) {
+
+}
 
 CollectionCard::~CollectionCard() {
     for (int i = 0; i < article_count; i++) {
@@ -16,7 +17,7 @@ CollectionCard::~CollectionCard() {
 void CollectionCard::add_article(Article *article) {
     if (article_count >= capacity) {
         int new_capacity = (capacity == 0) ? 2 : capacity * 2;
-        Article **new_articles = new Article *[new_capacity];
+        auto **new_articles = new Article *[new_capacity];
 
         for (int i = 0; i < article_count; i++) {
             new_articles[i] = articles[i];

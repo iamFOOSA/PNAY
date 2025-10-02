@@ -14,6 +14,14 @@ public:
              int yr, int circ, int pages, Article *article);
 
     ~BookCard();
+
+    BookCard(const BookCard &other);
+
+    BookCard &operator=(const BookCard &other);
+
+    BookCard(BookCard &&other) noexcept;
+
+    BookCard &operator=(BookCard &&other) noexcept;
 };
 
 #endif
