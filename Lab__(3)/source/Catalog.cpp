@@ -15,7 +15,7 @@ Catalog::~Catalog() {
 void Catalog::add_card(LibCard *card) {
     if (card_count >= capacity) {
         int new_capacity = (capacity == 0) ? 2 : capacity * 2;
-        auto **new_cards = new LibCard *[new_capacity];
+        auto new_cards = new LibCard *[new_capacity];
 
         for (int i = 0; i < card_count; i++) {
             new_cards[i] = cards[i];
@@ -26,8 +26,10 @@ void Catalog::add_card(LibCard *card) {
         capacity = new_capacity;
     }
 
-    cards[card_count] = card;
-    card_count++;
+    if (card_count < capacity) {
+        cards[card_count] = card;
+        card_count++;
+    }
 }
 
 void Catalog::search_by_cipher(const string &cipher) const {
