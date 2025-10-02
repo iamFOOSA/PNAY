@@ -24,6 +24,7 @@ void CollectionCard::add_article(Article *article) {
         }
 
         delete[] articles;
+
         articles = new_articles;
         capacity = new_capacity;
     }
