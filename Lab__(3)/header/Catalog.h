@@ -14,6 +14,7 @@ public:
 
     ~Catalog();
 
+
     void add_card(LibCard *card);
 
     void search_by_cipher(const string &cipher) const;
