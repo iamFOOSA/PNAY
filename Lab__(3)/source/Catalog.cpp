@@ -1,7 +1,7 @@
 #include "../header/Catalog.h"
 #include <iostream>
 
-Catalog::Catalog() : cards(nullptr), card_count(0), capacity(0) {}
+Catalog::Catalog()  {}
 
 Catalog::~Catalog() {
     for (int i = 0; i < card_count; i++) {
