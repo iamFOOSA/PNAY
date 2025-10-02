@@ -3,7 +3,6 @@
 
 void ABCCatalog::show_all_sorted() const {
     std::cout << "Все карточки в алфавитном порядке:" << std::endl;
-
     int count = get_card_count();
 
     if (count == 0) {
