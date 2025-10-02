@@ -9,6 +9,9 @@ using namespace std;
 class SelfPublishCard : public LibCard {
 protected:
     string publisher;
+    int year;
+    int circulation;
+    int page_count;
 
 public:
     SelfPublishCard(const string &auth, const string &titl,

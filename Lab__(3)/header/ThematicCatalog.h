@@ -5,6 +5,7 @@
 
 class ThematicCatalog : public Catalog {
 public:
+
     ~ThematicCatalog();
 };
 

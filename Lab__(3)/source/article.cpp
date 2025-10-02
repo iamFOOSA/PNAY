@@ -5,8 +5,7 @@ Article::Article(const string &article_title, const string &author)
 
 }
 
-Article::~Article() {
-}
+Article::~Article() = default;
 
 string Article::get_title() const {
     return title;

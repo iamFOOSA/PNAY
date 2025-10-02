@@ -3,11 +3,9 @@
 
 LibCard::LibCard(const string &auth, const string &titl, const string &code)
         : author(auth), title(titl), thematic_code(code) {
-
 }
 
-LibCard::~LibCard() {
-}
+LibCard::~LibCard() = default;
 
 string LibCard::get_author() const {
     return author;
