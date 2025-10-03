@@ -1,18 +1,19 @@
-#ifndef LAB___2__CLASS_H
-#define LAB___2__CLASS_H
+#ifndef LAB___2__STRING_H
+#define LAB___2__STRING_H
 
 #include <iostream>
 #include <cstring>
+
 
 class String {
     char *text;
 
 public:
-    String():text(new char[1]) {
+    String() : text(new char[1]) {
         text[0] = '\0';
     };
 
-    explicit String(const char *str){
+    explicit String(const char *str) {
         if (str) {
             size_t len = 0;
             while (str[len] != '\0') ++len;
@@ -26,7 +27,7 @@ public:
         }
     };
 
-    String(const String &other){
+    String(const String &other) {
         size_t len = 0;
         while (other.text[len] != '\0') ++len;
         text = new char[len + 1];
@@ -35,7 +36,7 @@ public:
         text[len] = '\0';
     };
 
-    ~String(){
+    ~String() {
         delete[] text;
     };
 
@@ -88,4 +89,5 @@ public:
         return in;
     }
 };
+
 #endif

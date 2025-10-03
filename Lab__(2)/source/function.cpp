@@ -1,5 +1,5 @@
 #include "../header /function.h"
-#include "../header /class.h"
+#include "../header /string.h"
 
 void show_menu() {
     String s1;
