@@ -65,18 +65,3 @@ bool String::operator==(const String &other) const {
     return std::strcmp(text, other.text) == 0;
 }
 
-std::ostream &operator<<(std::ostream &out, const String &s) {
-    size_t i = 0;
-    while (s.text[i] != '\0') {
-        out << s.text[i];
-        ++i;
-    }
-    return out;
-}
-
-std::istream &operator>>(std::istream &in, String &s) {
-    std::string temp;
-    in >> temp;
-    s = String(temp.c_str());
-    return in;
-}
