@@ -5,8 +5,6 @@ BookCard::~BookCard() {
     delete book_article;
 }
 
-
-
 BookCard &BookCard::operator=(const BookCard &other) {
     if (this != &other) {
         SelfPublishCard::operator=(other);
@@ -15,8 +13,6 @@ BookCard &BookCard::operator=(const BookCard &other) {
     }
     return *this;
 }
-
-
 
 BookCard &BookCard::operator=(BookCard &&other) noexcept {
     if (this != &other) {
