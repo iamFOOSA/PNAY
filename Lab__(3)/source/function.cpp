@@ -5,7 +5,6 @@
 #include "../header/ThematicCatalog.h"
 #include <iostream>
 #include <array>
-#define MAX_SIZE 200
 
 using namespace std;
 
@@ -13,6 +12,7 @@ void show_menu() {
     auto *main_catalog = new Catalog();
     auto *thematic_catalog = new ThematicCatalog();
     auto *abc_catalog = new ABCCatalog();
+    const int MAX_SIZE=200;
 
     array<CollectionCard *, MAX_SIZE> collections{};
     int collection_count = 0;
