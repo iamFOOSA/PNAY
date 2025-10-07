@@ -12,7 +12,7 @@ struct BookData {
     std::string publisher;
     int year;
     int circulation;
-    int pages;
+    int page_count;
 };
 
 class BookCard : public SelfPublishCard {
@@ -22,7 +22,7 @@ private:
 public:
     BookCard(const BookData &data, Article *article)
             : SelfPublishCard(data.author, data.title, data.code,
-                              data.publisher, data.year, data.circulation, data.pages),
+                              data.publisher, data.year, data.circulation, data.page_count),
               book_article(article) {}
 
     ~BookCard();

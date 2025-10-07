@@ -24,12 +24,12 @@ BookCard &BookCard::operator=(BookCard &&other) noexcept {
     return *this;
 }
 
-BookCard::BookCard(const BookCard& other)
+BookCard::BookCard(const BookCard &other)
         : SelfPublishCard(other),
           book_article(other.book_article ? new Article(*other.book_article) : nullptr) {
 }
 
-BookCard::BookCard(BookCard&& other) noexcept
+BookCard::BookCard(BookCard &&other) noexcept
         : SelfPublishCard(other),
           book_article(other.book_article) {
     other.book_article = nullptr;
