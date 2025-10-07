@@ -5,10 +5,7 @@ BookCard::~BookCard() {
     delete book_article;
 }
 
-BookCard::BookCard(const BookCard &other)
-        : SelfPublishCard(other),
-          book_article(other.book_article ? new Article(*other.book_article) : nullptr) {
-}
+
 
 BookCard &BookCard::operator=(const BookCard &other) {
     if (this != &other) {
@@ -19,10 +16,7 @@ BookCard &BookCard::operator=(const BookCard &other) {
     return *this;
 }
 
-BookCard::BookCard(BookCard &&other) noexcept
-        : SelfPublishCard(other), book_article(other.book_article) {
-    other.book_article = nullptr;
-}
+
 
 BookCard &BookCard::operator=(BookCard &&other) noexcept {
     if (this != &other) {
