@@ -11,20 +11,9 @@ private:
     int card_count = 0;
 
 protected:
-    int get_card_count() const { return card_count; }
-    int get_capacity() const { return capacity; }
-    LibCard* get_card(int index) const {
-        return (index >= 0 && index < card_count) ? cards[index] : nullptr;
-    }
+    int get_card_count() const;
+    LibCard* get_card(int index) const;
 
-    void set_card(int index, LibCard* card) {
-        if (index >= 0 && index < card_count) {
-            cards[index] = card;
-        }
-    }
-    void increment_card_count() { card_count++; }
-    void set_capacity(int cap) { capacity = cap; }
-    void set_cards(LibCard** new_cards) { cards = new_cards; }
 
 public:
     Catalog() = default;

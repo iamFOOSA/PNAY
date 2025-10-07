@@ -88,3 +88,11 @@ void Catalog::search_by_author_or_title(const std::string& search_term) const {
         std::cout << "Ничего не найдено." << std::endl;
     }
 }
+
+int Catalog::get_card_count() const {
+    return card_count;
+}
+
+LibCard* Catalog::get_card(int index) const {
+    return (index >= 0 && index < card_count) ? cards[index] : nullptr;
+}
