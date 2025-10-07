@@ -8,7 +8,7 @@ Catalog::~Catalog() {
     delete[] cards;
 }
 
-Catalog& Catalog::operator=(Catalog&& other) noexcept {
+Catalog &Catalog::operator=(Catalog &&other) noexcept {
     if (this != &other) {
         for (int i = 0; i < card_count; i++) {
             delete cards[i];
@@ -26,7 +26,7 @@ Catalog& Catalog::operator=(Catalog&& other) noexcept {
     return *this;
 }
 
-void Catalog::add_card(LibCard* card) {
+void Catalog::add_card(LibCard *card) {
     if (card_count >= capacity) {
         int new_capacity = (capacity == 0) ? 2 : capacity * 2;
 
@@ -47,7 +47,7 @@ void Catalog::add_card(LibCard* card) {
     card_count++;
 }
 
-void Catalog::search_by_cipher(const std::string& cipher) const {
+void Catalog::search_by_cipher(const std::string &cipher) const {
     std::cout << "Поиск по шифру '" << cipher << "':" << std::endl;
     bool found = false;
 
@@ -63,7 +63,7 @@ void Catalog::search_by_cipher(const std::string& cipher) const {
     }
 }
 
-void Catalog::search_by_author_or_title(const std::string& search_term) const {
+void Catalog::search_by_author_or_title(const std::string &search_term) const {
     std::cout << "Поиск '" << search_term << "':" << std::endl;
     bool found = false;
 
@@ -84,6 +84,6 @@ int Catalog::get_card_count() const {
     return card_count;
 }
 
-LibCard* Catalog::get_card(int index) const {
+LibCard *Catalog::get_card(int index) const {
     return (index >= 0 && index < card_count) ? cards[index] : nullptr;
 }
