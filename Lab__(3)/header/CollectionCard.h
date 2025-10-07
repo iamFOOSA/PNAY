@@ -14,7 +14,7 @@ private:
 public:
     CollectionCard(const std::string &auth, const std::string &titl,
                    const std::string &code, const std::string &publ,
-                   int yr, int circ, int pages);
+                   int year, int circulation, int page_count);
 
     ~CollectionCard();
 

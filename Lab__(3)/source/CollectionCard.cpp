@@ -2,8 +2,8 @@
 #include <string>
 CollectionCard::CollectionCard(const std::string &auth, const std::string &titl,
                                const std::string &code, const std::string &publ,
-                               int yr, int circ, int pages)
-        : SelfPublishCard(auth, titl, code, publ, yr, circ, pages) {
+                               int year, int circulation, int page_count)
+        : SelfPublishCard(auth, titl, code, publ, year, circulation, page_count) {
 }
 
 CollectionCard::~CollectionCard() {
