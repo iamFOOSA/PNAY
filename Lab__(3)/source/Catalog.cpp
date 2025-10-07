@@ -8,15 +8,6 @@ Catalog::~Catalog() {
     delete[] cards;
 }
 
-Catalog::Catalog(Catalog&& other) noexcept
-        : capacity(other.capacity),
-          cards(other.cards),
-          card_count(other.card_count) {
-    other.cards = nullptr;
-    other.card_count = 0;
-    other.capacity = 0;
-}
-
 Catalog &Catalog::operator=(Catalog &&other) noexcept {
     if (this != &other) {
         for (int i = 0; i < card_count; i++) {
@@ -95,4 +86,13 @@ int Catalog::get_card_count() const {
 
 LibCard *Catalog::get_card(int index) const {
     return (index >= 0 && index < card_count) ? cards[index] : nullptr;
+}
+
+Catalog::Catalog(Catalog&& other) noexcept
+        : capacity(other.capacity),
+          cards(other.cards),
+          card_count(other.card_count) {
+    other.cards = nullptr;
+    other.card_count = 0;
+    other.capacity = 0;
 }
