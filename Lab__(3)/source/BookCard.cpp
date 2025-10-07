@@ -30,6 +30,7 @@ BookCard::BookCard(const BookCard& other)
 }
 
 BookCard::BookCard(BookCard&& other) noexcept
-        : SelfPublishCard(std::move(other)), book_article(other.book_article) {
+        : SelfPublishCard(other),
+          book_article(other.book_article) {
     other.book_article = nullptr;
 }
