@@ -8,6 +8,13 @@ Catalog::~Catalog() {
     delete[] cards;
 }
 
+Catalog::Catalog(Catalog &&other) noexcept
+        : cards(other.cards), card_count(other.card_count), capacity(other.capacity) {
+    other.cards = nullptr;
+    other.card_count = 0;
+    other.capacity = 0;
+}
+
 Catalog &Catalog::operator=(Catalog &&other) noexcept {
     if (this != &other) {
         for (int i = 0; i < card_count; i++) {
