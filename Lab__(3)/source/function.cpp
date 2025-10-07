@@ -19,7 +19,7 @@ void show_menu() {
     int choice;
 
     do {
-        cout << "\n=== Библиотечная система ===" << endl;
+        cout << "\n    МЕНЮ    " << endl;
         cout << "1. Добавить сборник статей" << endl;
         cout << "2. Добавить книгу" << endl;
         cout << "3. Добавить статью в сборник" << endl;
