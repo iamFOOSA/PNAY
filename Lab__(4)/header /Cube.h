@@ -8,7 +8,7 @@ private:
     double side;
 
 public:
-    Cube(double s);
+    explicit Cube(double s);
 
     void print() const override;
 

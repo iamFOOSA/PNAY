@@ -8,7 +8,7 @@ private:
     double side;
 
 public:
-    Square(double s);
+    explicit Square(double s);
 
     void print() const override;
 
