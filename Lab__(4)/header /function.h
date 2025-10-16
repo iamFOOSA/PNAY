@@ -3,6 +3,7 @@
 
 #include "../header /Shape .h"
 #include <string>
+#include <span>
 
 void clearInputBuffer();
 
@@ -24,13 +25,13 @@ void addCube(Shape **&shapes, int &shapeCount, int &capacity);
 
 void addCylinder(Shape **&shapes, int &shapeCount, int &capacity);
 
-void showAllShapes(Shape **shapes, int shapeCount);
+void showAllShapes(std::span<Shape *> shapes);
 
-void show2DShapes(Shape **shapes, int shapeCount);
+void show2DShapes(std::span<Shape *> shapes);
 
-void show3DShapes(Shape **shapes, int shapeCount);
+void show3DShapes(std::span<Shape *> shapes);
 
-void calculateTotalArea(Shape **shapes, int shapeCount);
+void calculateTotalArea(std::span<Shape *> shapes);
 
 void deleteAllShapes(Shape **&shapes, int &shapeCount, int &capacity);
 

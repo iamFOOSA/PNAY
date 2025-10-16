@@ -6,7 +6,7 @@
 using namespace std;
 
 int main() {
-    Shape **shapes = new Shape *[10];
+    auto shapes = new Shape*[10];
     int shapeCount = 0;
     int capacity = 10;
 
@@ -43,16 +43,16 @@ int main() {
                 addCylinder(shapes, shapeCount, capacity);
                 break;
             case 7:
-                showAllShapes(shapes, shapeCount);
+                showAllShapes(span<Shape*>(shapes, shapeCount));
                 break;
             case 8:
-                show2DShapes(shapes, shapeCount);
+                show2DShapes(span<Shape*>(shapes, shapeCount));
                 break;
             case 9:
-                show3DShapes(shapes, shapeCount);
+                show3DShapes(span<Shape*>(shapes, shapeCount));
                 break;
             case 10:
-                calculateTotalArea(shapes, shapeCount);
+                calculateTotalArea(span<Shape*>(shapes, shapeCount));
                 break;
             case 11:
                 deleteAllShapes(shapes, shapeCount, capacity);

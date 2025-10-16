@@ -7,6 +7,7 @@
 #include "../header /Triangle.h"
 #include <limits>
 #include <stdexcept>
+#include <span>
 
 using namespace std;
 
@@ -134,14 +135,14 @@ void addCylinder(Shape **&shapes, int &shapeCount, int &capacity) {
     cout << "Cylinder added successfully!" << endl;
 }
 
-void showAllShapes(Shape **shapes, int shapeCount) {
-    if (shapeCount == 0) {
+void showAllShapes(span<Shape *> shapes) {
+    if (shapes.empty()) {
         cout << "No shapes created!" << endl;
         return;
     }
 
-    cout << "\n\tALL SHAPES (" << shapeCount << ")" << endl;
-    for (int i = 0; i < shapeCount; ++i) {
+    cout << "\n\tALL SHAPES (" << shapes.size() << ")" << endl;
+    for (size_t i = 0; i < shapes.size(); ++i) {
         cout << "\n--- Shape " << i + 1 << " ---" << endl;
         shapes[i]->print();
         cout << "Area: " << shapes[i]->area() << endl;
@@ -151,12 +152,12 @@ void showAllShapes(Shape **shapes, int shapeCount) {
     }
 }
 
-void show2DShapes(Shape **shapes, int shapeCount) {
+void show2DShapes(span<Shape*> shapes) {
     cout << "\n\t2D SHAPES" << endl;
     bool found = false;
 
-    for (int i = 0; i < shapeCount; ++i) {
-        auto shape2D = dynamic_cast<const TwoDShape *>(shapes[i]);
+    for (size_t i = 0; i < shapes.size(); ++i) {
+        auto shape2D = dynamic_cast<const TwoDShape*>(shapes[i]);
         if (shape2D) {
             found = true;
             cout << "\n    Shape " << i + 1 << "    " << endl;
@@ -173,12 +174,12 @@ void show2DShapes(Shape **shapes, int shapeCount) {
     }
 }
 
-void show3DShapes(Shape **shapes, int shapeCount) {
+void show3DShapes(span<Shape*> shapes) {
     cout << "\n\t3D SHAPES" << endl;
     bool found = false;
 
-    for (int i = 0; i < shapeCount; ++i) {
-        auto shape3D = dynamic_cast<const ThreeDShape *>(shapes[i]);
+    for (size_t i = 0; i < shapes.size(); ++i) {
+        auto shape3D = dynamic_cast<const ThreeDShape*>(shapes[i]);
         if (shape3D) {
             found = true;
             cout << "\n    Shape " << i + 1 << "    " << endl;
@@ -195,15 +196,15 @@ void show3DShapes(Shape **shapes, int shapeCount) {
     }
 }
 
-void calculateTotalArea(Shape **shapes, int shapeCount) {
-    if (shapeCount == 0) {
+void calculateTotalArea(span<Shape*> shapes) {
+    if (shapes.empty()) {
         cout << "No shapes to calculate!" << endl;
         return;
     }
 
     double totalArea = 0;
-    for (int i = 0; i < shapeCount; ++i) {
-        totalArea += shapes[i]->area();
+    for (auto shape : shapes) {
+        totalArea += shape->area();
     }
     cout << "Total area of all shapes: " << totalArea << endl;
 }
