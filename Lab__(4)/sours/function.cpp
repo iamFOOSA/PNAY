@@ -32,7 +32,7 @@ double getPositiveInput(const string &prompt) {
 }
 
 void displayMenu() {
-    cout << "\n\tGEOMETRIC SHAPES MANAGER" << endl;
+    cout << "\n    MENU    " << endl;
     cout << "1. Add Circle" << endl;
     cout << "2. Add Square" << endl;
     cout << "3. Add Triangle" << endl;
@@ -45,7 +45,7 @@ void displayMenu() {
     cout << "10. Calculate Total Area" << endl;
     cout << "11. Delete All Shapes" << endl;
     cout << "0. Exit" << endl;
-    cout << "Choose an option: ";
+    cout << "Choose number: ";
 }
 
 void resizeShapesArray(Shape **&shapes, int &capacity, int shapeCount) {
@@ -68,7 +68,7 @@ void addCircle(Shape **&shapes, int &shapeCount, int &capacity) {
 
     double radius = getPositiveInput("Enter circle radius: ");
     shapes[shapeCount++] = new Circle(radius);
-    cout << "Circle added successfully!" << endl;
+    cout << "Circle added!" << endl;
 }
 
 void addSquare(Shape **&shapes, int &shapeCount, int &capacity) {
@@ -78,7 +78,7 @@ void addSquare(Shape **&shapes, int &shapeCount, int &capacity) {
 
     double side = getPositiveInput("Enter square side length: ");
     shapes[shapeCount++] = new Square(side);
-    cout << "Square added successfully!" << endl;
+    cout << "Square added!" << endl;
 }
 
 void addTriangle(Shape **&shapes, int &shapeCount, int &capacity) {
@@ -86,14 +86,14 @@ void addTriangle(Shape **&shapes, int &shapeCount, int &capacity) {
         resizeShapesArray(shapes, capacity, shapeCount);
     }
 
-    double base = getPositiveInput("Enter triangle base: ");
-    double height = getPositiveInput("Enter triangle height: ");
+    double base = getPositiveInput("Enter base: ");
+    double height = getPositiveInput("Enter height: ");
     double side1 = getPositiveInput("Enter first side: ");
     double side2 = getPositiveInput("Enter second side: ");
 
     try {
         shapes[shapeCount++] = new Triangle(base, height, side1, side2);
-        cout << "Triangle added successfully!" << endl;
+        cout << "Triangle added!" << endl;
     } catch (const invalid_argument &e) {
         cout << "Error creating triangle: " << e.what() << endl;
         cout << "Please ensure:" << endl;
@@ -111,7 +111,7 @@ void addSphere(Shape **&shapes, int &shapeCount, int &capacity) {
 
     double radius = getPositiveInput("Enter sphere radius: ");
     shapes[shapeCount++] = new Sphere(radius);
-    cout << "Sphere added successfully!" << endl;
+    cout << "Sphere added!" << endl;
 }
 
 void addCube(Shape **&shapes, int &shapeCount, int &capacity) {
@@ -121,7 +121,7 @@ void addCube(Shape **&shapes, int &shapeCount, int &capacity) {
 
     double side = getPositiveInput("Enter cube side length: ");
     shapes[shapeCount++] = new Cube(side);
-    cout << "Cube added successfully!" << endl;
+    cout << "Cube added!" << endl;
 }
 
 void addCylinder(Shape **&shapes, int &shapeCount, int &capacity) {
@@ -132,7 +132,7 @@ void addCylinder(Shape **&shapes, int &shapeCount, int &capacity) {
     double radius = getPositiveInput("Enter cylinder radius: ");
     double height = getPositiveInput("Enter cylinder height: ");
     shapes[shapeCount++] = new Cylinder(radius, height);
-    cout << "Cylinder added successfully!" << endl;
+    cout << "Cylinder added!" << endl;
 }
 
 void showAllShapes(span<Shape *> shapes) {
@@ -141,9 +141,9 @@ void showAllShapes(span<Shape *> shapes) {
         return;
     }
 
-    cout << "\n\tALL SHAPES (" << shapes.size() << ")" << endl;
+    cout << "\n\t SHAPES (" << shapes.size() << ")" << endl;
     for (size_t i = 0; i < shapes.size(); ++i) {
-        cout << "\n--- Shape " << i + 1 << " ---" << endl;
+        cout << "\n    Shape " << i + 1 << " ---" << endl;
         shapes[i]->print();
         cout << "Area: " << shapes[i]->area() << endl;
         cout << "Volume: " << shapes[i]->volume() << endl;
@@ -152,12 +152,12 @@ void showAllShapes(span<Shape *> shapes) {
     }
 }
 
-void show2DShapes(span<Shape*> shapes) {
+void show2DShapes(span<Shape *> shapes) {
     cout << "\n\t2D SHAPES" << endl;
     bool found = false;
 
     for (size_t i = 0; i < shapes.size(); ++i) {
-        auto shape2D = dynamic_cast<const TwoDShape*>(shapes[i]);
+        auto shape2D = dynamic_cast<const TwoDShape *>(shapes[i]);
         if (shape2D) {
             found = true;
             cout << "\n    Shape " << i + 1 << "    " << endl;
@@ -174,12 +174,12 @@ void show2DShapes(span<Shape*> shapes) {
     }
 }
 
-void show3DShapes(span<Shape*> shapes) {
+void show3DShapes(span<Shape *> shapes) {
     cout << "\n\t3D SHAPES" << endl;
     bool found = false;
 
     for (size_t i = 0; i < shapes.size(); ++i) {
-        auto shape3D = dynamic_cast<const ThreeDShape*>(shapes[i]);
+        auto shape3D = dynamic_cast<const ThreeDShape *>(shapes[i]);
         if (shape3D) {
             found = true;
             cout << "\n    Shape " << i + 1 << "    " << endl;
@@ -192,18 +192,18 @@ void show3DShapes(span<Shape*> shapes) {
     }
 
     if (!found) {
-        cout << "No 3D shapes found!" << endl;
+        cout << "No 3D shapes!" << endl;
     }
 }
 
-void calculateTotalArea(span<Shape*> shapes) {
+void calculateTotalArea(span<Shape *> shapes) {
     if (shapes.empty()) {
         cout << "No shapes to calculate!" << endl;
         return;
     }
 
     double totalArea = 0;
-    for (auto shape : shapes) {
+    for (auto shape: shapes) {
         totalArea += shape->area();
     }
     cout << "Total area of all shapes: " << totalArea << endl;

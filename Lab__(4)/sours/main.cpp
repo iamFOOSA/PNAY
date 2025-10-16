@@ -62,7 +62,7 @@ int main() {
                     delete shapes[i];
                 }
                 delete[] shapes;
-                cout << "Goodbye!" << endl;
+                cout << "Program is over" << endl;
                 return 0;
             default:
                 cout << "Invalid choice! Please try again." << endl;
