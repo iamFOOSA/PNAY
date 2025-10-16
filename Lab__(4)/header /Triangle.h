@@ -7,7 +7,8 @@ class Triangle : public TwoDShape {
 private:
     double base;
     double height;
-    double side1, side2;
+    double side1;
+    double side2;
 
 public:
     Triangle(double b, double h, double s1, double s2);

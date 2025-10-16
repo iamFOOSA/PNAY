@@ -9,11 +9,11 @@ void Circle::print() const {
 }
 
 double Circle::area() const {
-    return constants::P * radius * radius;
+    return constants::pi * radius * radius;
 }
 
 double Circle::perimeter() const {
-    return 2 * constants::P * radius;
+    return 2 * constants::pi * radius;
 }
 
 void Circle::draw() const {

@@ -35,7 +35,7 @@ void cleanupShapes() {
 
 void resizeShapesArray() {
     int newCapacity = capacity * 2;
-    Shape** newShapes = new Shape*[newCapacity];
+    auto newShapes = new Shape*[newCapacity];
 
     for (int i = 0; i < shapeCount; ++i) {
         newShapes[i] = shapes[i];
@@ -116,7 +116,7 @@ void addTriangle() {
     try {
         shapes[shapeCount++] = new Triangle(base, height, side1, side2);
         cout << "Triangle added successfully!" << endl;
-    } catch (const exception& e) {
+    } catch (const invalid_argument& e) {
         cout << "Error creating triangle: " << e.what() << endl;
         cout << "Please ensure:" << endl;
         cout << "1. All sides are positive" << endl;
@@ -176,12 +176,11 @@ void showAllShapes() {
 void show2DShapes() {
     cout << "\n\t2D SHAPES" << endl;
     bool found = false;
-
     for (int i = 0; i < shapeCount; ++i) {
-        TwoDShape* shape2D = dynamic_cast<TwoDShape*>(shapes[i]);
+        const auto shape2D = dynamic_cast<TwoDShape*>(shapes[i]);
         if (shape2D) {
             found = true;
-            cout << "\n--- Shape " << i + 1 << " ---" << endl;
+            cout << "\n    Shape " << i + 1 << "    " << endl;
             shapes[i]->print();
             cout << "Area: " << shapes[i]->area() << endl;
             cout << "Perimeter: " << shape2D->perimeter() << endl;
@@ -198,12 +197,11 @@ void show2DShapes() {
 void show3DShapes() {
     cout << "\n\t3D SHAPES" << endl;
     bool found = false;
-
     for (int i = 0; i < shapeCount; ++i) {
-        ThreeDShape* shape3D = dynamic_cast<ThreeDShape*>(shapes[i]);
+        const auto shape3D = dynamic_cast<ThreeDShape*>(shapes[i]);
         if (shape3D) {
             found = true;
-            cout << "\n--- Shape " << i + 1 << " ---" << endl;
+            cout << "\n    Shape " << i + 1 << "    " << endl;
             shapes[i]->print();
             cout << "Surface Area: " << shapes[i]->area() << endl;
             cout << "Volume: " << shapes[i]->volume() << endl;

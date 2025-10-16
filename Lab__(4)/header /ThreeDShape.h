@@ -5,7 +5,7 @@
 
 class ThreeDShape : public Shape {
 public:
-    virtual ~ThreeDShape() = default;
+    ~ThreeDShape() override = default;
 };
 
 #endif

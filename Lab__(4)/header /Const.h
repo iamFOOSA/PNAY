@@ -1,6 +1,6 @@
 #ifndef LAB___4__CONST_H
 #define LAB___4__CONST_H
 namespace constants {
-    inline constexpr double P = 3.14159265358979323846;
+    inline constexpr double pi = 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679;
 }
 #endif

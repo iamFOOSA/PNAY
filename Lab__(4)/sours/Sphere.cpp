@@ -9,11 +9,11 @@ void Sphere::print() const {
 }
 
 double Sphere::area() const {
-    return 4 * constants::P * radius * radius;
+    return 4 * constants::pi * radius * radius;
 }
 
 double Sphere::volume() const {
-    return (4.0/3.0) * constants::P * radius * radius * radius;
+    return (4.0/3.0) * constants::pi * radius * radius * radius;
 }
 
 void Sphere::draw() const {

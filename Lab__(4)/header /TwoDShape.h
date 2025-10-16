@@ -5,7 +5,7 @@
 
 class TwoDShape : public Shape {
 public:
-    virtual ~TwoDShape() = default;
+    ~TwoDShape() override = default;
 
     virtual double perimeter() const = 0;
 

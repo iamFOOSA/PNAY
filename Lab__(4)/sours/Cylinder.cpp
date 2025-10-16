@@ -9,11 +9,11 @@ void Cylinder::print() const {
 }
 
 double Cylinder::area() const {
-    return 2 * constants::P * radius * (radius + height);
+    return 2 * constants::pi * radius * (radius + height);
 }
 
 double Cylinder::volume() const {
-    return constants::P * radius * radius * height;
+    return constants::pi * radius * radius * height;
 }
 
 void Cylinder::draw() const {
