@@ -33,6 +33,5 @@ void show3DShapes(std::span<Shape *> shapes);
 
 void calculateTotalArea(std::span<Shape *> shapes);
 
-void deleteAllShapes(Shape **&shapes, int &shapeCount, int &capacity);
 
 #endif

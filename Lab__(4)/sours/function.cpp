@@ -143,7 +143,7 @@ void showAllShapes(span<Shape *> shapes) {
 
     cout << "\n\t SHAPES (" << shapes.size() << ")" << endl;
     for (size_t i = 0; i < shapes.size(); ++i) {
-        cout << "\n    Shape " << i + 1 << " ---" << endl;
+        cout << "\n    Shape " << i + 1 << endl;
         shapes[i]->print();
         cout << "Area: " << shapes[i]->area() << endl;
         cout << "Volume: " << shapes[i]->volume() << endl;
@@ -160,7 +160,7 @@ void show2DShapes(span<Shape *> shapes) {
         auto shape2D = dynamic_cast<const TwoDShape *>(shapes[i]);
         if (shape2D) {
             found = true;
-            cout << "\n    Shape " << i + 1 << "    " << endl;
+            cout << "\n    Shape " << i + 1 << endl;
             shapes[i]->print();
             cout << "Area: " << shapes[i]->area() << endl;
             cout << "Perimeter: " << shape2D->perimeter() << endl;
@@ -182,7 +182,7 @@ void show3DShapes(span<Shape *> shapes) {
         auto shape3D = dynamic_cast<const ThreeDShape *>(shapes[i]);
         if (shape3D) {
             found = true;
-            cout << "\n    Shape " << i + 1 << "    " << endl;
+            cout << "\n    Shape " << i + 1 << endl;
             shapes[i]->print();
             cout << "Surface Area: " << shapes[i]->area() << endl;
             cout << "Volume: " << shapes[i]->volume() << endl;
@@ -209,14 +209,3 @@ void calculateTotalArea(span<Shape *> shapes) {
     cout << "Total area of all shapes: " << totalArea << endl;
 }
 
-void deleteAllShapes(Shape **&shapes, int &shapeCount, int &capacity) {
-    for (int i = 0; i < shapeCount; ++i) {
-        delete shapes[i];
-    }
-    delete[] shapes;
-
-    capacity = 10;
-    shapes = new Shape *[capacity];
-    shapeCount = 0;
-    cout << "All shapes deleted!" << endl;
-}

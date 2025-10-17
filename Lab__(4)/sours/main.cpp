@@ -54,9 +54,6 @@ int main() {
             case 10:
                 calculateTotalArea(span<Shape*>(shapes, shapeCount));
                 break;
-            case 11:
-                deleteAllShapes(shapes, shapeCount, capacity);
-                break;
             case 0:
                 for (int i = 0; i < shapeCount; ++i) {
                     delete shapes[i];
