@@ -6,9 +6,13 @@
 using namespace std;
 
 int main() {
-    auto shapes = new Shape*[10];
-    int shapeCount = 0;
-    int capacity = 10;
+    const int startShape = 10;
+    const int startCount = 0;
+    const int startCapacity = 10;
+
+    auto shapes = new Shape*[startShape];
+    int shapeCount = startCount;
+    int capacity = startCapacity;
 
     int choice;
 
