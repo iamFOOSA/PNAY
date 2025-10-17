@@ -43,7 +43,6 @@ void displayMenu() {
     cout << "8. Show Only 2D Shapes" << endl;
     cout << "9. Show Only 3D Shapes" << endl;
     cout << "10. Calculate Total Area" << endl;
-    cout << "11. Delete All Shapes" << endl;
     cout << "0. Exit" << endl;
     cout << "Choose number: ";
 }
