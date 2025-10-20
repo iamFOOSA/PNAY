@@ -17,17 +17,26 @@ void clear_input_buffer() {
 }
 
 double get_positive_input(const string &prompt) {
-    double value;
+    double user_input;
+
     while (true) {
         cout << prompt;
-        cin >> value;
-        if (cin.fail() || value <= 0) {
-            cout << "Error: Please enter a positive number!" << endl;
+        cin >> user_input;
+
+        if (cin.fail()) {
+            cout << "ERROR! Please enter a number (1-11)" << endl;
             clear_input_buffer();
-        } else {
-            clear_input_buffer();
-            return value;
+            continue;
         }
+
+        if (user_input <= 0) {
+            cout << "ERROR. U dont need use '-' " << endl;
+            clear_input_buffer();
+            continue;
+        }
+
+        clear_input_buffer();
+        return user_input;
     }
 }
 
