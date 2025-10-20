@@ -10,6 +10,8 @@
 #include <span>
 
 using namespace std;
+const int start_count = 0;
+const int start_capacity = 10;
 
 void clear_input_buffer() {
     cin.clear();
@@ -224,8 +226,8 @@ void delete_all_shapes(Shape **&shapes, int &shape_count, int &capacity) {
     }
     delete[] shapes;
 
-    capacity = 10;
+    capacity = start_capacity;
     shapes = new Shape *[capacity];
-    shape_count = 0;
+    shape_count = start_count;
     cout << "All shapes deleted!" << endl;
 }
