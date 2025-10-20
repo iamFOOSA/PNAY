@@ -13,7 +13,7 @@ double Sphere::area() const {
 }
 
 double Sphere::volume() const {
-    return (4.0/3.0) * constants::pi * radius * radius * radius;
+    return (4.0 / 3.0) * constants::pi * radius * radius * radius;
 }
 
 void Sphere::draw() const {

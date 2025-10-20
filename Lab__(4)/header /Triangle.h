@@ -22,7 +22,7 @@ public:
     void draw() const override;
 
 private:
-    bool isValidTriangle() const;
+    bool valid_triangle() const;
 };
 
 #endif

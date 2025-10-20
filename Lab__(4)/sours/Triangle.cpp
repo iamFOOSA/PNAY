@@ -6,12 +6,12 @@
 Triangle::Triangle(double b, double h, double s1, double s2)
         : base(b), height(h), side1(s1), side2(s2) {
 
-    if (!isValidTriangle()) {
+    if (!valid_triangle()) {
         throw std::invalid_argument("Invalid triangle: height doesn't match the sides");
     }
 }
 
-bool Triangle::isValidTriangle() const {
+bool Triangle::valid_triangle() const {
     if (base <= 0 || height <= 0 || side1 <= 0 || side2 <= 0) {
         return false;
     }
@@ -21,12 +21,12 @@ bool Triangle::isValidTriangle() const {
     }
 
     double s = (side1 + side2 + base) / 2;
-    double areaHeron = sqrt(s * (s - side1) * (s - side2) * (s - base));
+    double area_heron = sqrt(s * (s - side1) * (s - side2) * (s - base));
 
-    double areaBaseHeight = (base * height) / 2;
+    double area_base_height = (base * height) / 2;
 
     const double epsilon = 1e-6;
-    return std::abs(areaHeron - areaBaseHeight) < epsilon;
+    return std::abs(area_heron - area_base_height) < epsilon;
 }
 
 void Triangle::print() const {

@@ -6,60 +6,63 @@
 using namespace std;
 
 int main() {
-    const int startShape = 10;
-    const int startCount = 0;
-    const int startCapacity = 10;
+    const int start_shape = 10;
+    const int start_count = 0;
+    const int start_capacity = 10;
 
-    auto shapes = new Shape*[startShape];
-    int shapeCount = startCount;
-    int capacity = startCapacity;
+    auto shapes = new Shape *[start_shape];
+    int shape_count = start_count;
+    int capacity = start_capacity;
 
     int choice;
 
     while (true) {
-        displayMenu();
+        display_menu();
         cin >> choice;
 
         if (cin.fail()) {
             cout << "Invalid input! Please enter a number." << endl;
-            clearInputBuffer();
+            clear_input_buffer();
             continue;
         }
-        clearInputBuffer();
+        clear_input_buffer();
 
         switch (choice) {
             case 1:
-                addCircle(shapes, shapeCount, capacity);
+                add_circle(shapes, shape_count, capacity);
                 break;
             case 2:
-                addSquare(shapes, shapeCount, capacity);
+                add_square(shapes, shape_count, capacity);
                 break;
             case 3:
-                addTriangle(shapes, shapeCount, capacity);
+                add_triangle(shapes, shape_count, capacity);
                 break;
             case 4:
-                addSphere(shapes, shapeCount, capacity);
+                add_sphere(shapes, shape_count, capacity);
                 break;
             case 5:
-                addCube(shapes, shapeCount, capacity);
+                add_cube(shapes, shape_count, capacity);
                 break;
             case 6:
-                addCylinder(shapes, shapeCount, capacity);
+                add_cylinder(shapes, shape_count, capacity);
                 break;
             case 7:
-                showAllShapes(span<Shape*>(shapes, shapeCount));
+                show_all_shapes(span<Shape *>(shapes, shape_count));
                 break;
             case 8:
-                show2DShapes(span<Shape*>(shapes, shapeCount));
+                show_2d_shapes(span<Shape *>(shapes, shape_count));
                 break;
             case 9:
-                show3DShapes(span<Shape*>(shapes, shapeCount));
+                show_3d_shapes(span<Shape *>(shapes, shape_count));
                 break;
             case 10:
-                calculateTotalArea(span<Shape*>(shapes, shapeCount));
+                calculate_total_area(span<Shape *>(shapes, shape_count));
+                break;
+            case 11:
+                delete_all_shapes(shapes, shape_count, capacity);
                 break;
             case 0:
-                for (int i = 0; i < shapeCount; ++i) {
+                for (int i = 0; i < shape_count; ++i) {
                     delete shapes[i];
                 }
                 delete[] shapes;

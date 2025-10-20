@@ -5,33 +5,36 @@
 #include <string>
 #include <span>
 
-void clearInputBuffer();
+void clear_input_buffer();
 
-double getPositiveInput(const std::string &prompt);
+double get_positive_input(const std::string &prompt);
 
-void displayMenu();
+void display_menu();
 
-void resizeShapesArray(Shape **&shapes, int &capacity, int shapeCount);
+void resize_shapes_array(Shape **&shapes, int &capacity, int shape_count);
 
-void addCircle(Shape **&shapes, int &shapeCount, int &capacity);
+void add_circle(Shape **&shapes, int &shape_count, int &capacity);
 
-void addSquare(Shape **&shapes, int &shapeCount, int &capacity);
+void add_square(Shape **&shapes, int &shape_count, int &capacity);
 
-void addTriangle(Shape **&shapes, int &shapeCount, int &capacity);
+void add_triangle(Shape **&shapes, int &shape_count, int &capacity);
 
-void addSphere(Shape **&shapes, int &shapeCount, int &capacity);
+void add_sphere(Shape **&shapes, int &shape_count, int &capacity);
 
-void addCube(Shape **&shapes, int &shapeCount, int &capacity);
+void add_cube(Shape **&shapes, int &shape_count, int &capacity);
 
-void addCylinder(Shape **&shapes, int &shapeCount, int &capacity);
+void add_cylinder(Shape **&shapes, int &shape_count, int &capacity);
 
-void showAllShapes(std::span<Shape *> shapes);
+void show_all_shapes(std::span<Shape *> shapes);
 
-void show2DShapes(std::span<Shape *> shapes);
+void show_2d_shapes(std::span<Shape *> shapes);
 
-void show3DShapes(std::span<Shape *> shapes);
+void show_3d_shapes(std::span<Shape *> shapes);
 
-void calculateTotalArea(std::span<Shape *> shapes);
+void calculate_total_area(std::span<Shape *> shapes);
+
+void delete_all_shapes(Shape **&shapes, int &shape_count, int &capacity);
+
 
 
 #endif
