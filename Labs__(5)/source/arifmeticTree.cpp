@@ -2,12 +2,6 @@
 #include <string_view>
 #include <cctype>
 
-ArithmeticTree::ArithmeticTree() : expression(""), pos(0) {}
-
-ArithmeticTree::~ArithmeticTree() {
-    if (expression_tree.get_root() != nullptr) {
-    }
-}
 
 void ArithmeticTree::skip_spaces() {
     while (pos < expression.length() && expression[pos] == ' ') {

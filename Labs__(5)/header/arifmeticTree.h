@@ -10,7 +10,7 @@ class ArithmeticTree {
 private:
     Tree<std::string> expression_tree;
     std::string expression;
-    int pos;
+    int pos = 0;
 
     void skip_spaces();
 
@@ -28,9 +28,13 @@ private:
 
 
 public:
-    ArithmeticTree();
+    ArithmeticTree()= default;
 
-    ~ArithmeticTree();
+    ~ArithmeticTree() = default;
+
+    ArithmeticTree(const ArithmeticTree&) = delete;
+
+    ArithmeticTree& operator=(const ArithmeticTree&) = delete;
 
     void build_expression(std::string_view expr);
 
@@ -38,7 +42,7 @@ public:
 
     void print_tree() const;
 
-    void print_node(TreeNode<std::string>* node, int depth) const;
+    void print_node(TreeNode<std::string> *node, int depth) const;
 
     void clear();
 
