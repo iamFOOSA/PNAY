@@ -18,10 +18,11 @@ std::string ArithmeticTree::read_number() {
     bool has_dot = false;
 
     while (pos < expression.length()) {
-        if (char c = expression[pos]; std::isdigit(c)) {
+        char c = expression[pos];
+        if (std::isdigit(c)) {
             number += c;
             pos++;
-        } else if (char c = expression[pos]; c == '.' && !has_dot) {
+        } else if (c == '.' && !has_dot) {
             number += c;
             has_dot = true;
             pos++;
