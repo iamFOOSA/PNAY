@@ -1,5 +1,5 @@
 #include "../header/arifmeticTree.h"
-#include "../header/Tree.h"
+#include <string_view>
 #include <cctype>
 
 ArithmeticTree::ArithmeticTree() : expression(""), pos(0) {}
@@ -114,8 +114,8 @@ double ArithmeticTree::evaluate_node(TreeNode<std::string> *node) const {
     return 0;
 }
 
-void ArithmeticTree::build_expression(const std::string &expr) {
-    expression = expr;
+void ArithmeticTree::build_expression(std::string_view expr) {
+    expression = std::string(expr);
     pos = 0;
 
     TreeNode<std::string> *root = read_expression();

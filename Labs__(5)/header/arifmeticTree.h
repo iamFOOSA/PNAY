@@ -32,7 +32,7 @@ public:
 
     ~ArithmeticTree() = default;
 
-    void build_expression(const std::string &expression);
+    void build_expression(std::string_view expr);
 
     double evaluate();
 
