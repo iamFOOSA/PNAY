@@ -31,6 +31,7 @@ int main() {
         cout << "\n повторить операцию? (нажмите (2)): ";
         cin >> repeat;
         cin.ignore();
+        tree.clear();
     }
 
 

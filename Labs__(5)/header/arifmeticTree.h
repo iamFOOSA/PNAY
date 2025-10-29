@@ -30,7 +30,7 @@ private:
 public:
     ArithmeticTree();
 
-    ~ArithmeticTree() = default;
+    ~ArithmeticTree();
 
     void build_expression(std::string_view expr);
 
@@ -39,6 +39,8 @@ public:
     void print_tree() const;
 
     void print_node(TreeNode<std::string>* node, int depth) const;
+
+    void clear();
 
 };
 

@@ -4,6 +4,11 @@
 
 ArithmeticTree::ArithmeticTree() : expression(""), pos(0) {}
 
+ArithmeticTree::~ArithmeticTree() {
+    if (expression_tree.get_root() != nullptr) {
+    }
+}
+
 void ArithmeticTree::skip_spaces() {
     while (pos < expression.length() && expression[pos] == ' ') {
         pos++;
@@ -159,3 +164,10 @@ void ArithmeticTree::print_node(TreeNode<std::string>* node, int depth) const {
     print_node(node->get_left_node(), depth + 1);
 }
 
+void ArithmeticTree::clear() {
+    if (expression_tree.get_root() != nullptr) {
+        expression_tree = Tree<std::string>();
+    }
+    expression.clear();
+    pos = 0;
+}
