@@ -18,16 +18,16 @@ std::string ArithmeticTree::read_number() {
     bool has_dot = false;
 
     while (pos < expression.length()) {
-        char c = expression[pos];
-        if (std::isdigit(c)) {
+        if (char c = expression[pos]; std::isdigit(c)) {
             number += c;
-        } else if (c == '.' && !has_dot) {
+            pos++;
+        } else if (char c = expression[pos]; c == '.' && !has_dot) {
             number += c;
             has_dot = true;
+            pos++;
         } else {
             break;
         }
-        pos++;
     }
     return number;
 }
@@ -123,7 +123,9 @@ double ArithmeticTree::evaluate_node(TreeNode<std::string> *node) const {
     if (!is_operator(data[0])) {
         try {
             return std::stod(data);
-        } catch (const std::exception &) {
+        } catch (const std::invalid_argument &) {
+            return 0;
+        } catch (const std::out_of_range &) {
             return 0;
         }
     }
