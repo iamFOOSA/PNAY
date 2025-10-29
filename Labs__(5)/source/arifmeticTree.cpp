@@ -1,5 +1,5 @@
-#include "../arifmeticTree.h"
-#include "../Tree.h"
+#include "../header/arifmeticTree.h"
+#include "../header/Tree.h"
 #include <cctype>
 
 ArithmeticTree::ArithmeticTree() : expression(""), pos(0) {}

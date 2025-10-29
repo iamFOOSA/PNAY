@@ -1,7 +1,7 @@
 #ifndef LABS___5__ARIFMETICTREE_H
 #define LABS___5__ARIFMETICTREE_H
 
-#include "../Tree.h"
+#include "Tree.h"
 #include <iostream>
 #include <string>
 #include <stdexcept>

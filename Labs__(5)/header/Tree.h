@@ -1,6 +1,6 @@
 #ifndef LABS___5__TREE_H
 #define LABS___5__TREE_H
-#include "../TreeNode.h"
+#include "TreeNode.h"
 #include <iostream>
 
 template<typename T>
