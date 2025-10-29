@@ -11,10 +11,7 @@ private:
 public:
     explicit TreeNode(const T &value) : data(value), left_node(nullptr), right_node(nullptr) {}
 
-    ~TreeNode() {
-        delete left_node;
-        delete right_node;
-    }
+    ~TreeNode() = default;
 
     T get_data() const {
         return data;
