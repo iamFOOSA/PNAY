@@ -67,21 +67,34 @@ public:
         }
     }
 
+    Tree& operator=(const Tree& other) {
+        if (this != &other) {
+            delete_tree(root);
+            root = nullptr;
+
+            if (other.root != nullptr) {
+                root = copy_tree(other.root);
+            }
+        }
+        return *this;
+    }
+
+    Tree(Tree&& other) noexcept : root(other.root) {
+        other.root = nullptr;
+    }
+
+    Tree& operator=(Tree&& other) noexcept {
+        if (this != &other) {
+            delete_tree(root);
+
+            root = other.root;
+            other.root = nullptr;
+        }
+        return *this;
+    }
+
     ~Tree() {
         delete_tree(root);
-    }
-
-    void create_tree(const T &value) {
-        create_node(root, value);
-    }
-
-    void travers_tree() const {
-        travers_node(root);
-        std::cout << std::endl;
-    }
-
-    TreeNode<T> *search_tree(const T &value) const {
-        return search_node(root, value);
     }
 
     void set_root(TreeNode<T>* new_root) {
