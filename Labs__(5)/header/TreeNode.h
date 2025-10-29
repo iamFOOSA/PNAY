@@ -9,7 +9,7 @@ private:
     TreeNode<T> *right_node= nullptr;
 
 public:
-    explicit TreeNode(const T &value) : data(value), left_node(nullptr), right_node(nullptr) {}
+    explicit TreeNode(const T &value) : data(value) {}
 
     ~TreeNode() = default;
 
