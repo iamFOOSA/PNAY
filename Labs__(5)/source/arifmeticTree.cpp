@@ -94,7 +94,7 @@ double ArithmeticTree::evaluate_node(TreeNode<std::string> *node) const {
      if (!is_operator(data[0])) {
          try {
              return std::stod(data);
-         } catch (const std::exception &e) {
+         } catch (const std::exception&) {
              throw std::runtime_error(" неверный числовой формат: " + data);
          }
      }
