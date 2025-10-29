@@ -5,8 +5,8 @@ template<typename T>
 class TreeNode {
 private:
     T data;
-    TreeNode<T> *left_node;
-    TreeNode<T> *right_node;
+    TreeNode<T> *left_node= nullptr;
+    TreeNode<T> *right_node= nullptr;
 
 public:
     explicit TreeNode(const T &value) : data(value), left_node(nullptr), right_node(nullptr) {}

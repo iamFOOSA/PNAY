@@ -6,7 +6,7 @@
 template<typename T>
 class Tree {
 private:
-    TreeNode<T> *root;
+    TreeNode<T> *root = nullptr;
 
     void create_node(TreeNode<T> *&node, const T value) {
         if (node == nullptr) {
@@ -49,7 +49,7 @@ private:
     }
 
 public:
-    Tree() : root(nullptr) {}
+    Tree() = default;
 
     ~Tree() {
         delete_tree(root);

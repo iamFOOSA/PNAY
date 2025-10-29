@@ -133,7 +133,7 @@ void ArithmeticTree::build_expression(std::string_view expr) {
     expression_tree.set_root(root);
 }
 
-double ArithmeticTree::evaluate() {
+double ArithmeticTree::evaluate() const {
     if (expression_tree.get_root() == nullptr) {
         throw std::runtime_error("не удалось построить дерево");
     }

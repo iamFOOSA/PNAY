@@ -34,7 +34,7 @@ public:
 
     void build_expression(std::string_view expr);
 
-    double evaluate();
+    double evaluate() const;
 
     void print_tree() const;
 
