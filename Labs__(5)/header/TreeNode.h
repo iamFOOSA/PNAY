@@ -20,11 +20,20 @@ public:
         return data;
     }
 
-    TreeNode<T> *get_left_node() const {
+
+    const TreeNode<T> *get_left_node() const {
         return left_node;
     }
 
-    TreeNode<T> *get_right_node() const {
+    const TreeNode<T> *get_right_node() const {
+        return right_node;
+    }
+
+    TreeNode<T> *get_left_node(){
+        return left_node;
+    }
+
+    TreeNode<T> *get_right_node(){
         return right_node;
     }
 

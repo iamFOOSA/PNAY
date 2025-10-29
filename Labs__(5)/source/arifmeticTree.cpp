@@ -84,7 +84,7 @@ TreeNode<std::string> *ArithmeticTree::read_factor() {
     }
 }
 
-double ArithmeticTree::evaluate_node(TreeNode<std::string> *node) {
+double ArithmeticTree::evaluate_node(TreeNode<std::string> *node) const {
     if (node == nullptr) {
         throw std::runtime_error(" узел пуст");
     }

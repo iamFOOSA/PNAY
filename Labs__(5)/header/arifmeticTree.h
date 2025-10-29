@@ -24,7 +24,7 @@ private:
 
     TreeNode<std::string> *read_factor();
 
-    double evaluate_node(TreeNode<std::string> *node);
+    double evaluate_node(TreeNode<std::string> *node) const;
 
 
 public:
