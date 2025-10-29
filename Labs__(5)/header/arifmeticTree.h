@@ -11,6 +11,7 @@ private:
     Tree<std::string> expression_tree;
     std::string expression;
     int pos = 0;
+    std::string error_message;
 
     void skip_spaces();
 
@@ -36,13 +37,15 @@ public:
 
     ArithmeticTree& operator=(const ArithmeticTree&) = delete;
 
-    void build_expression(std::string_view expr);
+    bool build_expression(std::string_view expr);
 
-    double evaluate() const;
+    bool evaluate(double& result) const;
 
     void print_tree() const;
 
     void print_node(TreeNode<std::string> *node, int depth) const;
+
+    std::string get_error() const { return error_message; }
 
     void clear();
 

@@ -15,8 +15,18 @@ bool ArithmeticTree::is_operator(char c) {
 
 std::string ArithmeticTree::read_number() {
     std::string number;
-    while (pos < expression.length() && (std::isdigit(expression[pos]) || expression[pos] == '.')) {
-        number += expression[pos];
+    bool has_dot = false;
+
+    while (pos < expression.length()) {
+        char c = expression[pos];
+        if (std::isdigit(c)) {
+            number += c;
+        } else if (c == '.' && !has_dot) {
+            number += c;
+            has_dot = true;
+        } else {
+            break;
+        }
         pos++;
     }
     return number;
@@ -25,18 +35,23 @@ std::string ArithmeticTree::read_number() {
 
 TreeNode<std::string> *ArithmeticTree::read_expression() {
     TreeNode<std::string> *left = read_term();
+    if (left == nullptr) return nullptr;
+
     skip_spaces();
 
     while (pos < expression.length() && (expression[pos] == '+' || expression[pos] == '-')) {
         std::string symbol(1, expression[pos]);
         pos++;
         TreeNode<std::string> *right = read_term();
+        if (right == nullptr) {
+            delete left;
+            return nullptr;
+        }
 
         auto *symbol_node = new TreeNode<std::string>(symbol);
         symbol_node->set_left_node(left);
         symbol_node->set_right_node(right);
         left = symbol_node;
-
         skip_spaces();
     }
     return left;
@@ -44,18 +59,23 @@ TreeNode<std::string> *ArithmeticTree::read_expression() {
 
 TreeNode<std::string> *ArithmeticTree::read_term() {
     TreeNode<std::string> *left = read_factor();
+    if (left == nullptr) return nullptr;
+
     skip_spaces();
 
     while (pos < expression.length() && (expression[pos] == '*' || expression[pos] == '/')) {
         std::string symbol(1, expression[pos]);
         pos++;
         TreeNode<std::string> *right = read_factor();
+        if (right == nullptr) {
+            delete left;
+            return nullptr;
+        }
 
         auto *symbol_node = new TreeNode<std::string>(symbol);
         symbol_node->set_left_node(left);
         symbol_node->set_right_node(right);
         left = symbol_node;
-
         skip_spaces();
     }
     return left;
@@ -64,20 +84,30 @@ TreeNode<std::string> *ArithmeticTree::read_term() {
 TreeNode<std::string> *ArithmeticTree::read_factor() {
     skip_spaces();
 
+    if (pos >= expression.length()) {
+        error_message = "Неожиданный конец выражения";
+        return nullptr;
+    }
+
     if (expression[pos] == '(') {
         pos++;
         TreeNode<std::string> *node = read_expression();
+        if (node == nullptr) return nullptr;
+
         skip_spaces();
 
         if (pos >= expression.length() || expression[pos] != ')') {
-            throw std::runtime_error(" ошибка!!! нет закрывающейся скобки");
+            delete node;
+            error_message = "Ошибка!!! Нет закрывающейся скобки";
+            return nullptr;
         }
         pos++;
         return node;
     } else {
         std::string number = read_number();
         if (number.empty()) {
-            throw std::runtime_error(" ошибка!!! в дереве нет чисел");
+            error_message = "Ожидается число или выражение в скобках";
+            return nullptr;
         }
         return new TreeNode<std::string>(number);
     }
@@ -85,18 +115,18 @@ TreeNode<std::string> *ArithmeticTree::read_factor() {
 
 double ArithmeticTree::evaluate_node(TreeNode<std::string> *node) const {
     if (node == nullptr) {
-        throw std::runtime_error(" узел пуст");
+        return 0;
     }
 
     std::string data = node->get_data();
 
-     if (!is_operator(data[0])) {
-         try {
-             return std::stod(data);
-         } catch (const std::exception&) {
-             throw std::runtime_error(" неверный числовой формат: " + data);
-         }
-     }
+    if (!is_operator(data[0])) {
+        try {
+            return std::stod(data);
+        } catch (const std::exception &) {
+            return 0;
+        }
+    }
 
     double left_val = evaluate_node(node->get_left_node());
     double right_val = evaluate_node(node->get_right_node());
@@ -105,33 +135,45 @@ double ArithmeticTree::evaluate_node(TreeNode<std::string> *node) const {
     if (data == "-") return left_val - right_val;
     if (data == "*") return left_val * right_val;
     if (data == "/") {
-        if (right_val == 0) {
-            throw std::runtime_error("ошибка!!! нельзя делить на ноль");
-        }
         return left_val / right_val;
     }
+
     return 0;
 }
 
-void ArithmeticTree::build_expression(std::string_view expr) {
+bool ArithmeticTree::build_expression(std::string_view expr) {
     expression = std::string(expr);
     pos = 0;
+    error_message.clear();
+
+    if (expression.empty()) {
+        error_message = "Выражение пусто";
+        return false;
+    }
 
     TreeNode<std::string> *root = read_expression();
+    if (root == nullptr) {
+        return false;
+    }
 
     skip_spaces();
+
     if (pos < expression.length()) {
         delete root;
-        throw std::runtime_error("ошибка!!! удалите символ: " + expression.substr(pos));
+        error_message = "Ошибка!!! Удалите символ: " + expression.substr(pos, 1);
+        return false;
     }
     expression_tree.set_root(root);
+    return true;
 }
 
-double ArithmeticTree::evaluate() const {
+bool ArithmeticTree::evaluate(double &result) const {
     if (expression_tree.get_root() == nullptr) {
-        throw std::runtime_error("не удалось построить дерево");
+        return false;
     }
-    return evaluate_node(expression_tree.get_root());
+
+    result = evaluate_node(expression_tree.get_root());
+    return true;
 }
 
 
@@ -145,7 +187,7 @@ void ArithmeticTree::print_tree() const {
     }
 }
 
-void ArithmeticTree::print_node(TreeNode<std::string>* node, int depth) const {
+void ArithmeticTree::print_node(TreeNode<std::string> *node, int depth) const {
     if (node == nullptr) return;
 
     print_node(node->get_right_node(), depth + 1);
