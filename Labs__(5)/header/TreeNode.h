@@ -9,7 +9,7 @@ private:
     TreeNode<T> *right_node;
 
 public:
-    TreeNode(const T &value) : data(value), left_node(nullptr), right_node(nullptr) {}
+    explicit TreeNode(const T &value) : data(value), left_node(nullptr), right_node(nullptr) {}
 
     ~TreeNode() {
         delete left_node;
