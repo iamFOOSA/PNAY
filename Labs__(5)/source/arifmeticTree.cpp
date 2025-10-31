@@ -32,7 +32,6 @@ std::string ArithmeticTree::read_number() {
     }
     return number;
 }
-//////////////
 
 TreeNode<std::string> *ArithmeticTree::read_expression() {
     TreeNode<std::string> *left = read_term();
