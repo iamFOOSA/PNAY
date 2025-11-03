@@ -1,7 +1,11 @@
 #include <iostream>
 #include <string>
 #include <locale>
-#include "../header /string.h"
+#include "string.h"
+#include "exception.h"
+#include "index_out_of_bounds_exception.h"
+#include "overflow_top_exception.h"
+#include "memory_allocation_exception.h"
 
 String* str1_ptr = nullptr;
 String* str2_ptr = nullptr;
