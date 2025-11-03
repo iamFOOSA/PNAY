@@ -1,7 +1,6 @@
 #include "../header /string.h"
 #include <cstring>
 #include <string>
-
 void String::free_memory() {
     if (text != nullptr) {
         delete[] text;
@@ -51,7 +50,10 @@ String::String(const char *str) : text(nullptr), current_length(0) {
         return;
     }
 
-    int str_length = static_cast<int>(std::strlen(str));
+    int str_length = 0;
+    while (str[str_length] != '\0' && str_length <= MAX_LENGTH) {
+        str_length++;
+    }
     copy_from(str, str_length);
 }
 
@@ -66,7 +68,10 @@ String::String(const String &other) : text(nullptr), current_length(0) {
         return;
     }
 
-    int byte_length = static_cast<int>(std::strlen(other.text));
+    int byte_length = 0;
+    while (other.text[byte_length] != '\0' && byte_length <= MAX_LENGTH) {
+        byte_length++;
+    }
     copy_from(other.text, byte_length);
 }
 
@@ -90,7 +95,10 @@ String &String::operator=(const String &other) {
         return *this;
     }
 
-    int byte_length = static_cast<int>(std::strlen(other.text));
+    int byte_length = 0;
+    while (other.text[byte_length] != '\0' && byte_length <= MAX_LENGTH) {
+        byte_length++;
+    }
     copy_from(other.text, byte_length);
     return *this;
 }
@@ -107,8 +115,20 @@ String &String::operator+=(const String &other) {
                                    std::to_string(MAX_LENGTH) + ")");
     }
 
-    int current_bytes = (text != nullptr) ? static_cast<int>(std::strlen(text)) : 0;
-    int other_bytes = (other.text != nullptr) ? static_cast<int>(std::strlen(other.text)) : 0;
+    int current_bytes = 0;
+    if (text != nullptr) {
+        while (text[current_bytes] != '\0' && current_bytes <= MAX_LENGTH) {
+            current_bytes++;
+        }
+    }
+
+    int other_bytes = 0;
+    if (other.text != nullptr) {
+        while (other.text[other_bytes] != '\0' && other_bytes <= MAX_LENGTH) {
+            other_bytes++;
+        }
+    }
+
     int new_byte_length = current_bytes + other_bytes;
 
     char *new_text = new(std::nothrow) char[new_byte_length + 1];
@@ -145,7 +165,14 @@ bool String::operator==(const String &other) const {
         return false;
     }
 
-    return std::strcmp(text, other.text) == 0;
+    int i = 0;
+    while (text[i] != '\0' && other.text[i] != '\0' && i <= MAX_LENGTH) {
+        if (text[i] != other.text[i]) {
+            return false;
+        }
+        i++;
+    }
+    return text[i] == other.text[i];
 }
 
 char &String::operator[](int index) {
