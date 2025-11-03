@@ -1,0 +1,54 @@
+#ifndef LABS___5__ARIFMETICTREE_H
+#define LABS___5__ARIFMETICTREE_H
+
+#include "Tree.h"
+#include <iostream>
+#include <string>
+#include <stdexcept>
+
+class ArithmeticTree {
+private:
+    Tree<std::string> expression_tree;
+    std::string expression;
+    int pos = 0;
+    std::string error_message;
+
+    void skip_spaces();
+
+    static bool is_operator(char c);
+
+    std::string read_number();
+
+    TreeNode<std::string> *read_expression();
+
+    TreeNode<std::string> *read_term();
+
+    TreeNode<std::string> *read_factor();
+
+    double evaluate_node(TreeNode<std::string> *node) const;
+
+
+public:
+    ArithmeticTree()= default;
+
+    ~ArithmeticTree() = default;
+
+    ArithmeticTree(const ArithmeticTree&) = delete;
+
+    ArithmeticTree& operator=(const ArithmeticTree&) = delete;
+
+    bool build_expression(std::string_view expr);
+
+    bool evaluate(double& result) const;
+
+    void print_tree() const;
+
+    void print_node(TreeNode<std::string> *node, int depth) const;
+
+    std::string get_error() const { return error_message; }
+
+    void clear();
+
+};
+
+#endif
