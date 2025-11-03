@@ -1,5 +1,6 @@
 #ifndef LAB___1__MATRIX_H
 #define LAB___1__MATRIX_H
+
 class Matrix {
     int cols;
 
@@ -15,9 +16,9 @@ public:
 
     ~Matrix();
 
-    Matrix& operator=(const Matrix&) = delete;
+    Matrix &operator=(const Matrix &) = delete;
 
-    Matrix& operator=(Matrix&&) = delete;
+    Matrix &operator=(Matrix &&) = delete;
 
     void create_matrix() const;
 
@@ -28,4 +29,5 @@ public:
     Matrix multiply_matrix(const Matrix &B) const;
 
 };
+
 #endif

@@ -29,7 +29,7 @@ Matrix::~Matrix() {
 }
 
 void Matrix::create_matrix() const {
-    std::cout << "please write elements of the matrix through the space" << std::endl;
+    std::cout << "please write elements of the matrix through the ENTER" << std::endl;
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
             std::cin >> M[i][j];
