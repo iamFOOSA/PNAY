@@ -2,6 +2,10 @@
 #include <string>
 #include <locale>
 #include "../header /string.h"
+#include "../header /exception.h"
+#include "../header /index_out_of_bounds_exception.h"
+#include "../header /overflow_top_exception.h"
+#include "../header /memory_allocation_exception.h"
 
 String* str1_ptr = nullptr;
 String* str2_ptr = nullptr;
