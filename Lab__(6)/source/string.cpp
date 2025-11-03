@@ -15,8 +15,7 @@ void String::copy_from(const char *str, int str_length) {
     }
 
     if (str_length > MAX_LENGTH) {
-        throw OverflowTopException("Длина строки превышает максимально допустимую (" +
-                                   std::to_string(MAX_LENGTH) + ")");
+        throw OverflowTopException("Длина строки превышает максимально допустимую (" + std::to_string(MAX_LENGTH) + ")");
     }
 
     text = new(std::nothrow) char[str_length + 1];
@@ -34,7 +33,7 @@ void String::copy_from(const char *str, int str_length) {
 String::String() : text(nullptr), current_length(0) {
     text = new(std::nothrow) char[1];
     if (text == nullptr) {
-        throw MemoryAllocationException("Не удалось выделить память для пустой строки");
+        throw MemoryAllocationException("Не удалось выделить память");
     }
     text[0] = '\0';
 }
@@ -43,7 +42,7 @@ String::String(const char *str) : text(nullptr), current_length(0) {
     if (str == nullptr) {
         text = new(std::nothrow) char[1];
         if (text == nullptr) {
-            throw MemoryAllocationException("Не удалось выделить память для пустой строки");
+            throw MemoryAllocationException("Не удалось выделить память");
         }
         text[0] = '\0';
         current_length = 0;
@@ -61,7 +60,7 @@ String::String(const String &other) : text(nullptr), current_length(0) {
     if (other.text == nullptr) {
         text = new(std::nothrow) char[1];
         if (text == nullptr) {
-            throw MemoryAllocationException("Не удалось выделить память при копировании");
+            throw MemoryAllocationException("Не удалось выделить память");
         }
         text[0] = '\0';
         current_length = 0;
@@ -88,7 +87,7 @@ String &String::operator=(const String &other) {
         free_memory();
         text = new(std::nothrow) char[1];
         if (text == nullptr) {
-            throw MemoryAllocationException("Не удалось выделить память при присваивании");
+            throw MemoryAllocationException("Не удалось выделить память");
         }
         text[0] = '\0';
         current_length = 0;
@@ -111,8 +110,7 @@ String &String::operator+=(const String &other) {
     int new_length = current_length + other.current_length;
 
     if (new_length > MAX_LENGTH) {
-        throw OverflowTopException("Результат конкатенации превышает максимальную длину (" +
-                                   std::to_string(MAX_LENGTH) + ")");
+        throw OverflowTopException("Результат объединения превышает максимальную длину (" + std::to_string(MAX_LENGTH) + ")");
     }
 
     int current_bytes = 0;
@@ -133,7 +131,7 @@ String &String::operator+=(const String &other) {
 
     char *new_text = new(std::nothrow) char[new_byte_length + 1];
     if (new_text == nullptr) {
-        throw MemoryAllocationException("Не удалось выделить память для конкатенации");
+        throw MemoryAllocationException("Не удалось выделить память");
     }
 
     if (current_bytes > 0 && text != nullptr) {
@@ -177,18 +175,14 @@ bool String::operator==(const String &other) const {
 
 char &String::operator[](int index) {
     if (index < 0 || index >= current_length || text == nullptr) {
-        throw IndexOutOfBoundsException("Индекс " + std::to_string(index) +
-                                        " выходит за границы строки (длина: " +
-                                        std::to_string(current_length) + ")");
+        throw IndexOutOfBoundsException("Индекс " + std::to_string(index) + " выходит за границы строки (длина: " + std::to_string(current_length) + ")");
     }
     return text[index];
 }
 
 const char &String::operator[](int index) const {
     if (index < 0 || index >= current_length || text == nullptr) {
-        throw IndexOutOfBoundsException("Индекс " + std::to_string(index) +
-                                        " выходит за границы строки (длина: " +
-                                        std::to_string(current_length) + ")");
+        throw IndexOutOfBoundsException("Индекс " + std::to_string(index) + " выходит за границы строки (длина: " + std::to_string(current_length) + ")");
     }
     return text[index];
 }

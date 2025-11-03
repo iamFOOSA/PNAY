@@ -11,7 +11,7 @@ class String {
 private:
     char *text;
     int current_length;
-    static const int MAX_LENGTH = 100;
+    static const int MAX_LENGTH = 50;
 
     void free_memory();
     void copy_from(const char *str, int str_length);

@@ -7,7 +7,7 @@ String* str1_ptr = nullptr;
 String* str2_ptr = nullptr;
 
 void create_first_string() {
-    std::cout << "\n=== СОЗДАНИЕ ПЕРВОЙ СТРОКИ ===\n";
+    std::cout << "\n    Создание первой строки   \n";
     std::string input;
     std::cout << "Введите первую строку: ";
     std::cin.ignore();
@@ -22,19 +22,18 @@ void create_first_string() {
         std::cout << "Длина: " << str1_ptr->get_length() << "\n";
     }
     catch (const OverflowTopException& e) {
-        std::cout << "ОШИБКА: " << e.what() << std::endl;
+        std::cout << "Ошибка: " << e.what() << std::endl;
     }
     catch (const MemoryAllocationException& e) {
-        std::cout << "ОШИБКА: " << e.what() << std::endl;
+        std::cout << "Ошибка: " << e.what() << std::endl;
     }
     catch (const Exception& e) {
-        std::cout << "ОШИБКА: " << e.what() << std::endl;
+        std::cout << "Ошибка: " << e.what() << std::endl;
     }
-    std::cout << "================================\n\n";
 }
 
 void create_second_string() {
-    std::cout << "\n=== СОЗДАНИЕ ВТОРОЙ СТРОКИ ===\n";
+    std::cout << "\n     Создание второй строки    \n";
     std::string input;
     std::cout << "Введите вторую строку: ";
     std::cin.ignore();
@@ -49,19 +48,18 @@ void create_second_string() {
         std::cout << "Длина: " << str2_ptr->get_length() << "\n";
     }
     catch (const OverflowTopException& e) {
-        std::cout << "ОШИБКА: " << e.what() << std::endl;
+        std::cout << "Ошибка: " << e.what() << std::endl;
     }
     catch (const MemoryAllocationException& e) {
-        std::cout << "ОШИБКА: " << e.what() << std::endl;
+        std::cout << "Ошибка: " << e.what() << std::endl;
     }
     catch (const Exception& e) {
-        std::cout << "ОШИБКА: " << e.what() << std::endl;
+        std::cout << "Ошибка: " << e.what() << std::endl;
     }
-    std::cout << "================================\n\n";
 }
 
 void view_strings() {
-    std::cout << "\n=== ПРОСМОТР СТРОК ===\n";
+    std::cout << "\n    Просмотр строк    \n";
     
     if (str1_ptr == nullptr) {
         std::cout << "Первая строка не создана\n";
@@ -74,16 +72,14 @@ void view_strings() {
     } else {
         std::cout << "Вторая: \"" << *str2_ptr << "\" (длина: " << str2_ptr->get_length() << ")\n";
     }
-    
-    std::cout << "======================\n\n";
+
 }
 
 void concatenate_strings() {
-    std::cout << "\n=== ОБЪЕДИНЕНИЕ СТРОК ===\n";
+    std::cout << "\n    Объединение строк   \n";
     
     if (str1_ptr == nullptr || str2_ptr == nullptr) {
-        std::cout << "ОШИБКА: Строки не созданы!\n";
-        std::cout << "==========================\n\n";
+        std::cout << "Ошибка: Строки не созданы!\n";
         return;
     }
     
@@ -96,19 +92,18 @@ void concatenate_strings() {
         std::cout << "Длина: " << str1_ptr->get_length() << "\n";
     }
     catch (const OverflowTopException& e) {
-        std::cout << "ОШИБКА: " << e.what() << std::endl;
+        std::cout << "Ошибка: " << e.what() << std::endl;
     }
     catch (const MemoryAllocationException& e) {
-        std::cout << "ОШИБКА: " << e.what() << std::endl;
+        std::cout << "Ошибка: " << e.what() << std::endl;
     }
     catch (const Exception& e) {
-        std::cout << "ОШИБКА: " << e.what() << std::endl;
+        std::cout << "Ошибка: " << e.what() << std::endl;
     }
-    std::cout << "==========================\n\n";
 }
 
 void access_by_index() {
-    std::cout << "\n=== ДОСТУП К СИМВОЛУ ПО ИНДЕКСУ ===\n";
+    std::cout << "\n    Доступ к символу по индексу   \n";
     
     int string_choice;
     std::cout << "Выберите строку (1 - первая, 2 - вторая): ";
@@ -125,13 +120,11 @@ void access_by_index() {
         str_name = "вторая";
     } else {
         std::cout << "Неверный выбор!\n";
-        std::cout << "=====================================\n\n";
         return;
     }
     
     if (selected_str == nullptr) {
-        std::cout << "ОШИБКА: " << str_name << " строка не создана!\n";
-        std::cout << "=====================================\n\n";
+        std::cout << "Ошибка: " << str_name << " строка не создана!\n";
         return;
     }
     
@@ -147,25 +140,21 @@ void access_by_index() {
         std::cout << "Символ по индексу " << index << ": '" << ch << "'\n";
     }
     catch (const IndexOutOfBoundsException& e) {
-        std::cout << "ОШИБКА: " << e.what() << std::endl;
+        std::cout << "Ошибка: " << e.what() << std::endl;
     }
     catch (const Exception& e) {
-        std::cout << "ОШИБКА: " << e.what() << std::endl;
+        std::cout << "Ошибка: " << e.what() << std::endl;
     }
-    std::cout << "=====================================\n\n";
 }
 
 void print_menu() {
-    std::cout << "\n╔════════════════════════════════════════════════════════╗\n";
-    std::cout << "║              РАБОТА СО СТРОКАМИ                        ║\n";
-    std::cout << "╠════════════════════════════════════════════════════════╣\n";
-    std::cout << "║  1. Создать первую строку                             ║\n";
-    std::cout << "║  2. Создать вторую строку                             ║\n";
-    std::cout << "║  3. Просмотреть обе строки                             ║\n";
-    std::cout << "║  4. Объединить строки (первая += вторая)              ║\n";
-    std::cout << "║  5. Доступ к символу по индексу                       ║\n";
-    std::cout << "║  0. Выход                                               ║\n";
-    std::cout << "╚════════════════════════════════════════════════════════╝\n";
+    std::cout << "       Работа со строками \n";
+    std::cout << "1. Создать первую строку \n";
+    std::cout << "2. Создать вторую строку  \n";
+    std::cout << "3. Просмотреть обе строки  \n";
+    std::cout << "4. Объединить строки \n";
+    std::cout << "5. Доступ к символу по индексу\n";
+    std::cout << "0. Выход  \n";
     std::cout << "Выберите пункт меню: ";
 }
 
