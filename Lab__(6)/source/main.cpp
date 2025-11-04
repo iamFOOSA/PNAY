@@ -116,16 +116,23 @@ void access_by_index() {
     std::cout << "Выберите строку (1 - первая, 2 - вторая): ";
     std::cin >> string_choice;
 
-    String *selected_str_temp = nullptr;
+    String *selected_str;
     if (string_choice == 1) {
-        selected_str_temp = str1;
+        selected_str = str1;
     } else if (string_choice == 2) {
-        selected_str_temp = str2;
+        selected_str = str2;
+    } else {
+        selected_str = nullptr;
     }
-    String *const selected_str = selected_str_temp;
 
-    std::string str_name = (string_choice == 1) ? "первая" :
-                           (string_choice == 2) ? "вторая" : "";
+    std::string str_name;
+    if (string_choice == 1) {
+        str_name = "первая";
+    } else if (string_choice == 2) {
+        str_name = "вторая";
+    } else {
+        str_name = "";
+    }
 
     if (selected_str == nullptr) {
         std::cout << "Ошибка: " << (str_name.empty() ? "Неверный выбор!" : str_name + " строка не создана!") << "\n";
