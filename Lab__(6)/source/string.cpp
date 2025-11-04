@@ -1,6 +1,11 @@
 #include "../header /string.h"
 #include <cstring>
 #include <string>
+#include <format>
+
+const int String::MAX_LENGTH = 50;
+
+
 void String::free_memory() {
     if (text != nullptr) {
         delete[] text;
@@ -15,7 +20,7 @@ void String::copy_from(const char *str, int str_length) {
     }
 
     if (str_length > MAX_LENGTH) {
-        throw OverflowTopException("Длина строки превышает максимально допустимую (" + std::to_string(MAX_LENGTH) + ")");
+        throw OverflowTopException(std::format("Длина строки превышает максимально допустимую ({})", MAX_LENGTH));
     }
 
     text = new(std::nothrow) char[str_length + 1];
@@ -110,7 +115,7 @@ String &String::operator+=(const String &other) {
     int new_length = current_length + other.current_length;
 
     if (new_length > MAX_LENGTH) {
-        throw OverflowTopException("Результат объединения превышает максимальную длину (" + std::to_string(MAX_LENGTH) + ")");
+        throw OverflowTopException(std::format("Длина строки превышает максимально допустимую ({})", MAX_LENGTH));
     }
 
     int current_bytes = 0;
@@ -175,14 +180,16 @@ bool String::operator==(const String &other) const {
 
 char &String::operator[](int index) {
     if (index < 0 || index >= current_length || text == nullptr) {
-        throw IndexOutOfBoundsException("Индекс " + std::to_string(index) + " выходит за границы строки (длина: " + std::to_string(current_length) + ")");
+        throw IndexOutOfBoundsException(std::format("Индекс {} выходит за границы строки (длина: {})", index, current_length));
+
     }
     return text[index];
 }
 
 const char &String::operator[](int index) const {
     if (index < 0 || index >= current_length || text == nullptr) {
-        throw IndexOutOfBoundsException("Индекс " + std::to_string(index) + " выходит за границы строки (длина: " + std::to_string(current_length) + ")");
+        throw IndexOutOfBoundsException(std::format("Индекс {} выходит за границы строки (длина: {})", index, current_length));
+
     }
     return text[index];
 }
