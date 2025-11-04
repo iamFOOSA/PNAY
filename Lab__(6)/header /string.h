@@ -12,8 +12,6 @@ private:
     char *text = nullptr;
     int current_length=0;
     static const int MAX_LENGTH;
-    String *const str1_ptr = nullptr;
-    String *const str2_ptr = nullptr;
 
     void free_memory();
 
@@ -38,10 +36,6 @@ public:
     char &operator[](int index);
 
     const char &operator[](int index) const;
-
-    const String *get_str1_ptr() const { return str1_ptr; }
-
-    const String *get_str2_ptr() const { return str2_ptr; }
 
     friend std::ostream &operator<<(std::ostream &out, const String &s) {
         if (s.text != nullptr) {
