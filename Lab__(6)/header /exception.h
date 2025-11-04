@@ -4,8 +4,10 @@
 #include <string>
 
 class Exception {
-protected:
+private:
     std::string message;
+
+
 
 public:
     explicit Exception(const std::string& msg);
