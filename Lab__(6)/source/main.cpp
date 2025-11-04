@@ -4,15 +4,8 @@
 #include <locale>
 #include "../header /string.h"
 
-static std::unique_ptr<String>& str1() {
-    static std::unique_ptr<String> instance;
-    return instance;
-}
-
-static std::unique_ptr<String>& str2() {
-    static std::unique_ptr<String> instance;
-    return instance;
-}
+inline std::unique_ptr<String> g_str1;
+inline std::unique_ptr<String> g_str2;
 
 void create_first_string() {
     std::cout << "\n    Создание первой строки   \n";
@@ -22,9 +15,9 @@ void create_first_string() {
     std::getline(std::cin, input);
 
     try {
-        str1().reset(new String(input.c_str()));
-        std::cout << "Первая строка создана: " << *str1() << "\n";
-        std::cout << "Длина: " << str1()->get_length() << "\n";
+        g_str1.reset(new String(input.c_str()));
+        std::cout << "Первая строка создана: " << *g_str1 << "\n";
+        std::cout << "Длина: " << g_str1->get_length() << "\n";
     }
     catch (const OverflowTopException& e) {
         std::cout << "Ошибка: " << e.what() << std::endl;
@@ -45,9 +38,9 @@ void create_second_string() {
     std::getline(std::cin, input);
     
     try {
-        str2().reset(new String(input.c_str()));
-        std::cout << "Вторая строка создана: " << *str2() << "\n";
-        std::cout << "Длина: " << str2()->get_length() << "\n";
+        g_str2.reset(new String(input.c_str()));
+        std::cout << "Вторая строка создана: " << *g_str2 << "\n";
+        std::cout << "Длина: " << g_str2->get_length() << "\n";
     }
     catch (const OverflowTopException& e) {
         std::cout << "Ошибка: " << e.what() << std::endl;
@@ -63,16 +56,16 @@ void create_second_string() {
 void view_strings() {
     std::cout << "\n    Просмотр строк    \n";
     
-    if (!str1()) {
+    if (!g_str1) {
         std::cout << "Первая строка не создана\n";
     } else {
-        std::cout << "Первая: \"" << *str1() << "\" (длина: " << str1()->get_length() << ")\n";
+        std::cout << "Первая: \"" << *g_str1 << "\" (длина: " << g_str1->get_length() << ")\n";
     }
     
-    if (!str2()) {
+    if (!g_str2) {
         std::cout << "Вторая строка не создана\n";
     } else {
-        std::cout << "Вторая: \"" << *str2() << "\" (длина: " << str2()->get_length() << ")\n";
+        std::cout << "Вторая: \"" << *g_str2 << "\" (длина: " << g_str2->get_length() << ")\n";
     }
 
 }
@@ -80,18 +73,18 @@ void view_strings() {
 void concatenate_strings() {
     std::cout << "\n    Объединение строк   \n";
     
-    if (!str1() || !str2()) {
+    if (!g_str1 || !g_str2) {
         std::cout << "Ошибка: Строки не созданы!\n";
         return;
     }
     
-    std::cout << "Первая: \"" << *str1() << "\" (длина: " << str1()->get_length() << ")\n";
-    std::cout << "Вторая: \"" << *str2() << "\" (длина: " << str2()->get_length() << ")\n";
+    std::cout << "Первая: \"" << *g_str1 << "\" (длина: " << g_str1->get_length() << ")\n";
+    std::cout << "Вторая: \"" << *g_str2 << "\" (длина: " << g_str2->get_length() << ")\n";
     
     try {
-        *str1() += *str2();
-        std::cout << "Результат: \"" << *str1() << "\"\n";
-        std::cout << "Длина: " << str1()->get_length() << "\n";
+        *g_str1 += *g_str2;
+        std::cout << "Результат: \"" << *g_str1 << "\"\n";
+        std::cout << "Длина: " << g_str1->get_length() << "\n";
     }
     catch (const OverflowTopException& e) {
         std::cout << "Ошибка: " << e.what() << std::endl;
@@ -115,10 +108,10 @@ void access_by_index() {
     std::string str_name;
     
     if (string_choice == 1) {
-        selected_str = str1().get();
+        selected_str = g_str1.get();
         str_name = "первая";
     } else if (string_choice == 2) {
-        selected_str = str2().get();
+        selected_str = g_str2.get();
         str_name = "вторая";
     } else {
         std::cout << "Неверный выбор!\n";
@@ -186,8 +179,8 @@ int main() {
                 access_by_index();
                 break;
             case 0:
-                str1().reset();
-                str2().reset();
+                g_str1.reset();
+                g_str2.reset();
                 break;
             default:
                 std::cout << "\nНеверный выбор!\n\n";
