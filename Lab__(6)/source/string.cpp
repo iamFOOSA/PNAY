@@ -115,7 +115,7 @@ String &String::operator+=(const String &other) {
     int new_length = current_length + other.current_length;
 
     if (new_length > MAX_LENGTH) {
-        throw OverflowTopException(std::format("Длина строки превышает максимально допустимую ({})", MAX_LENGTH));
+        throw OverflowTopException(std::format("Результат объединения превышает максимальную длину ({})", MAX_LENGTH));  // исправить текст
     }
 
     int current_bytes = 0;

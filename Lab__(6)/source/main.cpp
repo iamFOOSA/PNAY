@@ -12,7 +12,7 @@ void create_first_string() {
     std::cout << "Введите первую строку: ";
     std::cin.ignore();
     std::getline(std::cin, input);
-    
+
     try {
         if (str1_ptr != nullptr) {
             delete str1_ptr;
@@ -160,7 +160,7 @@ void print_menu() {
 
 int main() {
     setlocale(LC_ALL, "ru_RU.UTF-8");
-    
+
     int choice = -1;
     
     while (choice != 0) {
