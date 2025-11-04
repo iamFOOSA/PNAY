@@ -16,7 +16,7 @@ void create_first_string() {
 
     try {
         g_str1.reset(new String(input.c_str()));
-        String* const s1 = g_str1.get();
+        const String* const s1 = g_str1.get();
         std::cout << "Первая строка создана: " << *s1 << "\n";
         std::cout << "Длина: " << s1->get_length() << "\n";
     }
@@ -40,7 +40,7 @@ void create_second_string() {
     
     try {
         g_str2.reset(new String(input.c_str()));
-        String* const s2 = g_str2.get();
+        const String* const s2 = g_str2.get();
         std::cout << "Вторая строка создана: " << *s2 << "\n";
         std::cout << "Длина: " << s2->get_length() << "\n";
     }
@@ -83,7 +83,7 @@ void concatenate_strings() {
     }
     
     String* const s1 = g_str1.get();
-    String* const s2 = g_str2.get();
+    const String* const s2 = g_str2.get();
     std::cout << "Первая: \"" << *s1 << "\" (длина: " << s1->get_length() << ")\n";
     std::cout << "Вторая: \"" << *s2 << "\" (длина: " << s2->get_length() << ")\n";
     
