@@ -110,7 +110,7 @@ String &String::operator+=(const String &other) {
     int new_length = current_length + other.current_length;
 
     if (new_length > MAX_LENGTH) {
-        throw OverflowTopException(std::format("Результат объединения превышает максимальную длину ({})", MAX_LENGTH));
+        throw OverflowTopException("Результат объединения превышает максимальную длину (" + std::to_string(MAX_LENGTH) + ")");
     }
 
     int current_bytes = 0;
@@ -129,7 +129,7 @@ String &String::operator+=(const String &other) {
 
     int new_byte_length = current_bytes + other_bytes;
 
-    auto new_text = new(std::nothrow) char[new_byte_length + 1];
+    char *new_text = new(std::nothrow) char[new_byte_length + 1];
     if (new_text == nullptr) {
         throw MemoryAllocationException("Не удалось выделить память");
     }
@@ -175,15 +175,14 @@ bool String::operator==(const String &other) const {
 
 char &String::operator[](int index) {
     if (index < 0 || index >= current_length || text == nullptr) {
-        throw IndexOutOfBoundsException(std::format("Индекс {} выходит за границы строки (длина: {})", index, current_length));
+        throw IndexOutOfBoundsException("Индекс " + std::to_string(index) + " выходит за границы строки (длина: " + std::to_string(current_length) + ")");
     }
     return text[index];
 }
 
 const char &String::operator[](int index) const {
     if (index < 0 || index >= current_length || text == nullptr) {
-        throw IndexOutOfBoundsException(std::format("Индекс {} выходит за границы строки (длина: {})", index, current_length));
-
+        throw IndexOutOfBoundsException("Индекс " + std::to_string(index) + " выходит за границы строки (длина: " + std::to_string(current_length) + ")");
     }
     return text[index];
 }
