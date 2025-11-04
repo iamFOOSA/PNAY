@@ -4,8 +4,8 @@
 #include <locale>
 #include "../header /string.h"
 
-inline std::unique_ptr<String> g_str1;
-inline std::unique_ptr<String> g_str2;
+String* str1 = nullptr;
+String* str2 = nullptr;
 
 void create_first_string() {
     std::cout << "\n    Создание первой строки   \n";
@@ -15,8 +15,11 @@ void create_first_string() {
     std::getline(std::cin, input);
 
     try {
-        g_str1.reset(new String(input.c_str()));
-        const String* const s1 = g_str1.get();
+        if (str1 != nullptr) {
+            delete str1;
+        }
+        str1 = new String(input.c_str());
+        String *const s1 = str1;
         std::cout << "Первая строка создана: " << *s1 << "\n";
         std::cout << "Длина: " << s1->get_length() << "\n";
     }
@@ -37,10 +40,13 @@ void create_second_string() {
     std::cout << "Введите вторую строку: ";
     std::cin.ignore();
     std::getline(std::cin, input);
-    
+
     try {
-        g_str2.reset(new String(input.c_str()));
-        const String* const s2 = g_str2.get();
+        if (str2 != nullptr) {
+            delete str2;
+        }
+        str2 = new String(input.c_str());
+        String *const s2 = str2;
         std::cout << "Вторая строка создана: " << *s2 << "\n";
         std::cout << "Длина: " << s2->get_length() << "\n";
     }
@@ -57,33 +63,33 @@ void create_second_string() {
 
 void view_strings() {
     std::cout << "\n    Просмотр строк    \n";
-    
-    if (!g_str1) {
+
+    if (str1 == nullptr) {
         std::cout << "Первая строка не создана\n";
     } else {
-        const String* s1 = g_str1.get();
+        String *const s1 = str1;
         std::cout << "Первая: \"" << *s1 << "\" (длина: " << s1->get_length() << ")\n";
     }
-    
-    if (!g_str2) {
+
+    if (str2 == nullptr) {
         std::cout << "Вторая строка не создана\n";
     } else {
-        const String* s2 = g_str2.get();
+        String *const s2 = str2;
         std::cout << "Вторая: \"" << *s2 << "\" (длина: " << s2->get_length() << ")\n";
     }
-
 }
 
 void concatenate_strings() {
     std::cout << "\n    Объединение строк   \n";
-    
-    if (!g_str1 || !g_str2) {
+
+    if (str1 == nullptr || str2 == nullptr) {
         std::cout << "Ошибка: Строки не созданы!\n";
         return;
     }
-    
-    String* const s1 = g_str1.get();
-    const String* const s2 = g_str2.get();
+
+    String *const s1 = str1;
+    String *const s2 = str2;
+
     std::cout << "Первая: \"" << *s1 << "\" (длина: " << s1->get_length() << ")\n";
     std::cout << "Вторая: \"" << *s2 << "\" (длина: " << s2->get_length() << ")\n";
     
@@ -102,40 +108,30 @@ void concatenate_strings() {
         std::cout << "Ошибка: " << e.what() << std::endl;
     }
 }
-
 void access_by_index() {
     std::cout << "\n    Доступ к символу по индексу   \n";
-    
+
     int string_choice;
     std::cout << "Выберите строку (1 - первая, 2 - вторая): ";
     std::cin >> string_choice;
-    
-    String* selected_str = nullptr;
-    std::string str_name;
-    
-    if (string_choice == 1) {
-        selected_str = g_str1.get();
-        str_name = "первая";
-    } else if (string_choice == 2) {
-        selected_str = g_str2.get();
-        str_name = "вторая";
-    } else {
-        std::cout << "Неверный выбор!\n";
-        return;
-    }
-    
+
+    String *const selected_str = (string_choice == 1) ? str1 :
+                                 (string_choice == 2) ? str2 : nullptr;
+    std::string str_name = (string_choice == 1) ? "первая" :
+                           (string_choice == 2) ? "вторая" : "";
+
     if (selected_str == nullptr) {
-        std::cout << "Ошибка: " << str_name << " строка не создана!\n";
+        std::cout << "Ошибка: " << (str_name.empty() ? "Неверный выбор!" : str_name + " строка не создана!") << "\n";
         return;
     }
-    
+
     std::cout << str_name << " строка: \"" << *selected_str << "\"\n";
     std::cout << "Длина: " << selected_str->get_length() << "\n";
     std::cout << "Введите индекс (0-" << (selected_str->get_length() - 1) << "): ";
-    
+
     int index;
     std::cin >> index;
-    
+
     try {
         char ch = (*selected_str)[index];
         std::cout << "Символ по индексу " << index << ": '" << ch << "'\n";
@@ -185,8 +181,14 @@ int main() {
                 access_by_index();
                 break;
             case 0:
-                g_str1.reset();
-                g_str2.reset();
+                if (str1 != nullptr) {
+                    delete str1;
+                    str1 = nullptr;
+                }
+                if (str2 != nullptr) {
+                    delete str2;
+                    str2 = nullptr;
+                }
                 break;
             default:
                 std::cout << "\nНеверный выбор!\n\n";
