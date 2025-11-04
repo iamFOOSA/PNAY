@@ -19,7 +19,7 @@ void create_first_string() {
             delete str1;
         }
         str1 = new String(input.c_str());
-        String *const s1 = str1;
+        const String *const s1 = str1;
         std::cout << "Первая строка создана: " << *s1 << "\n";
         std::cout << "Длина: " << s1->get_length() << "\n";
     }
@@ -46,7 +46,7 @@ void create_second_string() {
             delete str2;
         }
         str2 = new String(input.c_str());
-        String *const s2 = str2;
+        const String *const s2 = str2;
         std::cout << "Вторая строка создана: " << *s2 << "\n";
         std::cout << "Длина: " << s2->get_length() << "\n";
     }
@@ -67,14 +67,14 @@ void view_strings() {
     if (str1 == nullptr) {
         std::cout << "Первая строка не создана\n";
     } else {
-        String *const s1 = str1;
+        const String *const s1 = str1;
         std::cout << "Первая: \"" << *s1 << "\" (длина: " << s1->get_length() << ")\n";
     }
 
     if (str2 == nullptr) {
         std::cout << "Вторая строка не создана\n";
     } else {
-        String *const s2 = str2;
+        const String *const s2 = str2;
         std::cout << "Вторая: \"" << *s2 << "\" (длина: " << s2->get_length() << ")\n";
     }
 }
@@ -88,7 +88,7 @@ void concatenate_strings() {
     }
 
     String *const s1 = str1;
-    String *const s2 = str2;
+    const String *const s2 = str2;
 
     std::cout << "Первая: \"" << *s1 << "\" (длина: " << s1->get_length() << ")\n";
     std::cout << "Вторая: \"" << *s2 << "\" (длина: " << s2->get_length() << ")\n";

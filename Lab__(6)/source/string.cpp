@@ -3,7 +3,7 @@
 #include <string>
 #include <format>
 
-const int String::MAX_LENGTH = 50;
+const int String::MAX_LENGTH = 20;
 
 
 void String::free_memory() {
