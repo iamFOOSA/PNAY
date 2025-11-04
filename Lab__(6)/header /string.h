@@ -9,8 +9,8 @@
 
 class String {
 private:
-    char *text;
-    int current_length;
+    char *text = nullptr;
+    int current_length=0;
     static const int MAX_LENGTH = 50;
     String *const str1_ptr = nullptr;
     String *const str2_ptr = nullptr;

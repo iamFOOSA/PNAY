@@ -30,7 +30,7 @@ void String::copy_from(const char *str, int str_length) {
     current_length = str_length;
 }
 
-String::String() : text(nullptr), current_length(0) {
+String::String() {
     text = new(std::nothrow) char[1];
     if (text == nullptr) {
         throw MemoryAllocationException("Не удалось выделить память");
@@ -38,7 +38,7 @@ String::String() : text(nullptr), current_length(0) {
     text[0] = '\0';
 }
 
-String::String(const char *str) : text(nullptr), current_length(0) {
+String::String(const char *str) {
     if (str == nullptr) {
         text = new(std::nothrow) char[1];
         if (text == nullptr) {
@@ -56,7 +56,7 @@ String::String(const char *str) : text(nullptr), current_length(0) {
     copy_from(str, str_length);
 }
 
-String::String(const String &other) : text(nullptr), current_length(0) {
+String::String(const String &other) {
     if (other.text == nullptr) {
         text = new(std::nothrow) char[1];
         if (text == nullptr) {
@@ -129,7 +129,7 @@ String &String::operator+=(const String &other) {
 
     int new_byte_length = current_bytes + other_bytes;
 
-    char *new_text = new(std::nothrow) char[new_byte_length + 1];
+    auto new_text = new(std::nothrow) char[new_byte_length + 1];
     if (new_text == nullptr) {
         throw MemoryAllocationException("Не удалось выделить память");
     }
