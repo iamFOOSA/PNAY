@@ -4,6 +4,7 @@
 #include <format>
 
 const int String::MAX_LENGTH = 20;
+const int String::MIN_LENGTH = 1;
 
 
 void String::free_memory() {
@@ -17,6 +18,10 @@ void String::free_memory() {
 void String::copy_from(const char *str, int str_length) {
     if (str_length < 0) {
         throw InvalidArgumentException("Неверная длина строки");
+    }
+
+    if (str_length < MIN_LENGTH) {
+        throw UnderflowException(std::format("Строка должна содержать не менее {} символа", MIN_LENGTH));
     }
 
     if (str_length > MAX_LENGTH) {
@@ -116,6 +121,10 @@ String &String::operator+=(const String &other) {
 
     if (new_length > MAX_LENGTH) {
         throw OverflowTopException(std::format("Результат объединения превышает максимальную длину ({})", MAX_LENGTH));  // исправить текст
+    }
+
+    if (new_length < MIN_LENGTH && new_length != 0) {
+        throw UnderflowException(std::format("После объединения строка должна содержать не менее {} символа", MIN_LENGTH));
     }
 
     int current_bytes = 0;

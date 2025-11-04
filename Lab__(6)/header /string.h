@@ -6,12 +6,14 @@
 #include "invalid_argument_exception.h"
 #include "overflow_top_exception.h"
 #include "memory_allocation_exception.h"
+#include "underflow_exception.h"
 
 class String {
 private:
     char *text = nullptr;
     int current_length=0;
     static const int MAX_LENGTH;
+    static const int MIN_LENGTH;
 
     void free_memory();
 
@@ -53,6 +55,12 @@ public:
         in >> temp;
         s = String(temp.c_str());
         return in;
+    }
+
+    void Underflow() const {
+        if (current_length < 1) {
+            throw UnderflowException("Строка слишком короткая (минимум 5 символов)");
+        }
     }
 
     int get_length() const { return current_length; }
