@@ -5,7 +5,8 @@
 
 class OverflowException : public Exception {
 public:
-    explicit OverflowException(const std::string& msg);
+    explicit OverflowException(const std::string& msg = "");
+    std::string get_message() const override { return "Переполнение"; }
 };
 
 #endif

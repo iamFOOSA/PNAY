@@ -5,7 +5,8 @@
 
 class IndexOutOfBoundsException : public RangeException {
 public:
-    explicit IndexOutOfBoundsException(const std::string& msg);
+    explicit IndexOutOfBoundsException(const std::string& msg = "");
+    std::string get_message() const override { return "Индекс вне границ"; }
 };
 
 #endif

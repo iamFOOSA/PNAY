@@ -5,7 +5,8 @@
 
 class OverflowTopException : public OverflowException {
 public:
-     explicit OverflowTopException(const std::string& msg);
+    explicit OverflowTopException(const std::string& msg = "");
+    std::string get_message() const override { return "Верхнее переполнение"; }
 };
 
 #endif

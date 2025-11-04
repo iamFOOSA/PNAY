@@ -6,7 +6,6 @@
 const int String::MAX_LENGTH = 20;
 const int String::MIN_LENGTH = 1;
 
-
 void String::free_memory() {
     if (text != nullptr) {
         delete[] text;
@@ -17,7 +16,7 @@ void String::free_memory() {
 
 void String::copy_from(const char *str, int str_length) {
     if (str_length < 0) {
-        throw InvalidArgumentException("Неверная длина строки");
+        throw InvalidArgumentException();
     }
 
     if (str_length < MIN_LENGTH) {
@@ -30,7 +29,7 @@ void String::copy_from(const char *str, int str_length) {
 
     text = new(std::nothrow) char[str_length + 1];
     if (text == nullptr) {
-        throw MemoryAllocationException("Не удалось выделить память для строки");
+        throw MemoryAllocationException();
     }
 
     if (str != nullptr && str_length > 0) {
@@ -43,7 +42,7 @@ void String::copy_from(const char *str, int str_length) {
 String::String() {
     text = new(std::nothrow) char[1];
     if (text == nullptr) {
-        throw MemoryAllocationException("Не удалось выделить память");
+        throw MemoryAllocationException();
     }
     text[0] = '\0';
 }
@@ -52,7 +51,7 @@ String::String(const char *str) {
     if (str == nullptr) {
         text = new(std::nothrow) char[1];
         if (text == nullptr) {
-            throw MemoryAllocationException("Не удалось выделить память");
+            throw MemoryAllocationException();
         }
         text[0] = '\0';
         current_length = 0;
@@ -70,7 +69,7 @@ String::String(const String &other) {
     if (other.text == nullptr) {
         text = new(std::nothrow) char[1];
         if (text == nullptr) {
-            throw MemoryAllocationException("Не удалось выделить память");
+            throw MemoryAllocationException();
         }
         text[0] = '\0';
         current_length = 0;
@@ -97,7 +96,7 @@ String &String::operator=(const String &other) {
         free_memory();
         text = new(std::nothrow) char[1];
         if (text == nullptr) {
-            throw MemoryAllocationException("Не удалось выделить память");
+            throw MemoryAllocationException();
         }
         text[0] = '\0';
         current_length = 0;
@@ -120,7 +119,7 @@ String &String::operator+=(const String &other) {
     int new_length = current_length + other.current_length;
 
     if (new_length > MAX_LENGTH) {
-        throw OverflowTopException(std::format("Результат объединения превышает максимальную длину ({})", MAX_LENGTH));  // исправить текст
+        throw OverflowTopException(std::format("Результат объединения превышает максимальную длину ({})", MAX_LENGTH));
     }
 
     if (new_length < MIN_LENGTH && new_length != 0) {
@@ -145,7 +144,7 @@ String &String::operator+=(const String &other) {
 
     auto new_text = new(std::nothrow) char[new_byte_length + 1];
     if (new_text == nullptr) {
-        throw MemoryAllocationException("Не удалось выделить память");
+        throw MemoryAllocationException();
     }
 
     if (current_bytes > 0 && text != nullptr) {
@@ -190,7 +189,6 @@ bool String::operator==(const String &other) const {
 char &String::operator[](int index) {
     if (index < 0 || index >= current_length || text == nullptr) {
         throw IndexOutOfBoundsException(std::format("Индекс {} выходит за границы строки (длина: {})", index, current_length));
-
     }
     return text[index];
 }
@@ -198,7 +196,6 @@ char &String::operator[](int index) {
 const char &String::operator[](int index) const {
     if (index < 0 || index >= current_length || text == nullptr) {
         throw IndexOutOfBoundsException(std::format("Индекс {} выходит за границы строки (длина: {})", index, current_length));
-
     }
     return text[index];
 }

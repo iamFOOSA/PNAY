@@ -5,7 +5,8 @@
 
 class InvalidArgumentException : public Exception {
 public:
-    explicit InvalidArgumentException(const std::string& msg);
+    explicit InvalidArgumentException(const std::string& msg = "");
+    std::string get_message() const override { return "Неверный аргумент"; }
 };
 
 #endif

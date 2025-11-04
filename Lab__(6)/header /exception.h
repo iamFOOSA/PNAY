@@ -9,8 +9,10 @@ private:
 
 public:
     explicit Exception(const std::string& msg);
-    ~Exception() = default;
+    virtual ~Exception() = default;
     const char* what() const noexcept;
+
+    virtual std::string get_message() const { return "Ошибка"; }
 };
 
 #endif
