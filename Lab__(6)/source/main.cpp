@@ -1,10 +1,18 @@
 #include <iostream>
 #include <string>
+#include <memory>
 #include <locale>
 #include "../header /string.h"
 
-String* str1_ptr = nullptr;
-String* str2_ptr = nullptr;
+static std::unique_ptr<String>& str1() {
+    static std::unique_ptr<String> instance;
+    return instance;
+}
+
+static std::unique_ptr<String>& str2() {
+    static std::unique_ptr<String> instance;
+    return instance;
+}
 
 void create_first_string() {
     std::cout << "\n    Создание первой строки   \n";
@@ -14,12 +22,9 @@ void create_first_string() {
     std::getline(std::cin, input);
 
     try {
-        if (str1_ptr != nullptr) {
-            delete str1_ptr;
-        }
-        str1_ptr = new String(input.c_str());
-        std::cout << "Первая строка создана: " << *str1_ptr << "\n";
-        std::cout << "Длина: " << str1_ptr->get_length() << "\n";
+        str1().reset(new String(input.c_str()));
+        std::cout << "Первая строка создана: " << *str1() << "\n";
+        std::cout << "Длина: " << str1()->get_length() << "\n";
     }
     catch (const OverflowTopException& e) {
         std::cout << "Ошибка: " << e.what() << std::endl;
@@ -40,12 +45,9 @@ void create_second_string() {
     std::getline(std::cin, input);
     
     try {
-        if (str2_ptr != nullptr) {
-            delete str2_ptr;
-        }
-        str2_ptr = new String(input.c_str());
-        std::cout << "Вторая строка создана: " << *str2_ptr << "\n";
-        std::cout << "Длина: " << str2_ptr->get_length() << "\n";
+        str2().reset(new String(input.c_str()));
+        std::cout << "Вторая строка создана: " << *str2() << "\n";
+        std::cout << "Длина: " << str2()->get_length() << "\n";
     }
     catch (const OverflowTopException& e) {
         std::cout << "Ошибка: " << e.what() << std::endl;
@@ -61,16 +63,16 @@ void create_second_string() {
 void view_strings() {
     std::cout << "\n    Просмотр строк    \n";
     
-    if (str1_ptr == nullptr) {
+    if (!str1()) {
         std::cout << "Первая строка не создана\n";
     } else {
-        std::cout << "Первая: \"" << *str1_ptr << "\" (длина: " << str1_ptr->get_length() << ")\n";
+        std::cout << "Первая: \"" << *str1() << "\" (длина: " << str1()->get_length() << ")\n";
     }
     
-    if (str2_ptr == nullptr) {
+    if (!str2()) {
         std::cout << "Вторая строка не создана\n";
     } else {
-        std::cout << "Вторая: \"" << *str2_ptr << "\" (длина: " << str2_ptr->get_length() << ")\n";
+        std::cout << "Вторая: \"" << *str2() << "\" (длина: " << str2()->get_length() << ")\n";
     }
 
 }
@@ -78,18 +80,18 @@ void view_strings() {
 void concatenate_strings() {
     std::cout << "\n    Объединение строк   \n";
     
-    if (str1_ptr == nullptr || str2_ptr == nullptr) {
+    if (!str1() || !str2()) {
         std::cout << "Ошибка: Строки не созданы!\n";
         return;
     }
     
-    std::cout << "Первая: \"" << *str1_ptr << "\" (длина: " << str1_ptr->get_length() << ")\n";
-    std::cout << "Вторая: \"" << *str2_ptr << "\" (длина: " << str2_ptr->get_length() << ")\n";
+    std::cout << "Первая: \"" << *str1() << "\" (длина: " << str1()->get_length() << ")\n";
+    std::cout << "Вторая: \"" << *str2() << "\" (длина: " << str2()->get_length() << ")\n";
     
     try {
-        *str1_ptr += *str2_ptr;
-        std::cout << "Результат: \"" << *str1_ptr << "\"\n";
-        std::cout << "Длина: " << str1_ptr->get_length() << "\n";
+        *str1() += *str2();
+        std::cout << "Результат: \"" << *str1() << "\"\n";
+        std::cout << "Длина: " << str1()->get_length() << "\n";
     }
     catch (const OverflowTopException& e) {
         std::cout << "Ошибка: " << e.what() << std::endl;
@@ -113,10 +115,10 @@ void access_by_index() {
     std::string str_name;
     
     if (string_choice == 1) {
-        selected_str = str1_ptr;
+        selected_str = str1().get();
         str_name = "первая";
     } else if (string_choice == 2) {
-        selected_str = str2_ptr;
+        selected_str = str2().get();
         str_name = "вторая";
     } else {
         std::cout << "Неверный выбор!\n";
@@ -184,12 +186,8 @@ int main() {
                 access_by_index();
                 break;
             case 0:
-                if (str1_ptr != nullptr) {
-                    delete str1_ptr;
-                }
-                if (str2_ptr != nullptr) {
-                    delete str2_ptr;
-                }
+                str1().reset();
+                str2().reset();
                 break;
             default:
                 std::cout << "\nНеверный выбор!\n\n";
