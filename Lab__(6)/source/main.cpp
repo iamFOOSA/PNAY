@@ -115,8 +115,14 @@ void access_by_index() {
     std::cout << "Выберите строку (1 - первая, 2 - вторая): ";
     std::cin >> string_choice;
 
-    String *const selected_str = (string_choice == 1) ? str1 :
-                                 (string_choice == 2) ? str2 : nullptr;
+    String *selected_str_temp = nullptr;
+    if (string_choice == 1) {
+        selected_str_temp = str1;
+    } else if (string_choice == 2) {
+        selected_str_temp = str2;
+    }
+    String *const selected_str = selected_str_temp;
+
     std::string str_name = (string_choice == 1) ? "первая" :
                            (string_choice == 2) ? "вторая" : "";
 
