@@ -16,8 +16,9 @@ void create_first_string() {
 
     try {
         g_str1.reset(new String(input.c_str()));
-        std::cout << "Первая строка создана: " << *g_str1 << "\n";
-        std::cout << "Длина: " << g_str1->get_length() << "\n";
+        String* const s1 = g_str1.get();
+        std::cout << "Первая строка создана: " << *s1 << "\n";
+        std::cout << "Длина: " << s1->get_length() << "\n";
     }
     catch (const OverflowTopException& e) {
         std::cout << "Ошибка: " << e.what() << std::endl;
@@ -39,8 +40,9 @@ void create_second_string() {
     
     try {
         g_str2.reset(new String(input.c_str()));
-        std::cout << "Вторая строка создана: " << *g_str2 << "\n";
-        std::cout << "Длина: " << g_str2->get_length() << "\n";
+        String* const s2 = g_str2.get();
+        std::cout << "Вторая строка создана: " << *s2 << "\n";
+        std::cout << "Длина: " << s2->get_length() << "\n";
     }
     catch (const OverflowTopException& e) {
         std::cout << "Ошибка: " << e.what() << std::endl;
@@ -59,13 +61,15 @@ void view_strings() {
     if (!g_str1) {
         std::cout << "Первая строка не создана\n";
     } else {
-        std::cout << "Первая: \"" << *g_str1 << "\" (длина: " << g_str1->get_length() << ")\n";
+        const String* s1 = g_str1.get();
+        std::cout << "Первая: \"" << *s1 << "\" (длина: " << s1->get_length() << ")\n";
     }
     
     if (!g_str2) {
         std::cout << "Вторая строка не создана\n";
     } else {
-        std::cout << "Вторая: \"" << *g_str2 << "\" (длина: " << g_str2->get_length() << ")\n";
+        const String* s2 = g_str2.get();
+        std::cout << "Вторая: \"" << *s2 << "\" (длина: " << s2->get_length() << ")\n";
     }
 
 }
@@ -78,13 +82,15 @@ void concatenate_strings() {
         return;
     }
     
-    std::cout << "Первая: \"" << *g_str1 << "\" (длина: " << g_str1->get_length() << ")\n";
-    std::cout << "Вторая: \"" << *g_str2 << "\" (длина: " << g_str2->get_length() << ")\n";
+    String* const s1 = g_str1.get();
+    String* const s2 = g_str2.get();
+    std::cout << "Первая: \"" << *s1 << "\" (длина: " << s1->get_length() << ")\n";
+    std::cout << "Вторая: \"" << *s2 << "\" (длина: " << s2->get_length() << ")\n";
     
     try {
-        *g_str1 += *g_str2;
-        std::cout << "Результат: \"" << *g_str1 << "\"\n";
-        std::cout << "Длина: " << g_str1->get_length() << "\n";
+        *s1 += *s2;
+        std::cout << "Результат: \"" << *s1 << "\"\n";
+        std::cout << "Длина: " << s1->get_length() << "\n";
     }
     catch (const OverflowTopException& e) {
         std::cout << "Ошибка: " << e.what() << std::endl;
