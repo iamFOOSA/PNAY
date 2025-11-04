@@ -5,7 +5,7 @@
 
 class RangeException : public Exception {
 public:
-    RangeException(const std::string& msg);
+    explicit RangeException(const std::string& msg);
 };
 
 #endif

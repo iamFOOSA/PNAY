@@ -12,22 +12,36 @@ private:
     char *text;
     int current_length;
     static const int MAX_LENGTH = 50;
+    String *const str1_ptr = nullptr;
+    String *const str2_ptr = nullptr;
 
     void free_memory();
+
     void copy_from(const char *str, int str_length);
 
 public:
     String();
+
     explicit String(const char *str);
+
     String(const String &other);
+
     ~String();
 
+
     String &operator=(const String &other);
+
     String &operator+=(const String &other);
+
     bool operator==(const String &other) const;
-    
+
     char &operator[](int index);
+
     const char &operator[](int index) const;
+
+    const String *get_str1_ptr() const { return str1_ptr; }
+
+    const String *get_str2_ptr() const { return str2_ptr; }
 
     friend std::ostream &operator<<(std::ostream &out, const String &s) {
         if (s.text != nullptr) {

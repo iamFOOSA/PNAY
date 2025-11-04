@@ -5,7 +5,7 @@
 
 class MemoryAllocationException : public Exception {
 public:
-    MemoryAllocationException(const std::string& msg);
+    explicit MemoryAllocationException(const std::string& msg);
 };
 
 #endif

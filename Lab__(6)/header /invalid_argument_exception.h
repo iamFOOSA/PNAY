@@ -5,7 +5,7 @@
 
 class InvalidArgumentException : public Exception {
 public:
-    InvalidArgumentException(const std::string& msg);
+    explicit InvalidArgumentException(const std::string& msg);
 };
 
 #endif

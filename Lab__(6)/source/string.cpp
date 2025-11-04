@@ -129,7 +129,7 @@ String &String::operator+=(const String &other) {
 
     int new_byte_length = current_bytes + other_bytes;
 
-    char *new_text = new(std::nothrow) char[new_byte_length + 1];
+    auto new_text = new(std::nothrow) char[new_byte_length + 1];
     if (new_text == nullptr) {
         throw MemoryAllocationException("Не удалось выделить память");
     }

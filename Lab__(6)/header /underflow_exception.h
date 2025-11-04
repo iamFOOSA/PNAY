@@ -5,7 +5,7 @@
 
 class UnderflowException : public OverflowException {
 public:
-    UnderflowException(const std::string& msg);
+    explicit UnderflowException(const std::string& msg);
 };
 
 #endif

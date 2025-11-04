@@ -8,7 +8,7 @@ protected:
     std::string message;
 
 public:
-    Exception(const std::string& msg);
+    explicit Exception(const std::string& msg);
     virtual ~Exception() = default;
     virtual const char* what() const noexcept;
 };

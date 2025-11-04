@@ -5,7 +5,7 @@
 
 class IndexOutOfBoundsException : public RangeException {
 public:
-    IndexOutOfBoundsException(const std::string& msg);
+    explicit IndexOutOfBoundsException(const std::string& msg);
 };
 
 #endif

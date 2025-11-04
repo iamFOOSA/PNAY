@@ -5,7 +5,7 @@
 
 class OverflowException : public Exception {
 public:
-    OverflowException(const std::string& msg);
+    explicit OverflowException(const std::string& msg);
 };
 
 #endif
