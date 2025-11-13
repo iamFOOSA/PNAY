@@ -5,7 +5,6 @@
 #include <iomanip>
 #include <array>
 
-
 void Inventory::load_from_file() {
     product_count = 0;
     std::ifstream file(file_name);

@@ -20,7 +20,7 @@ private:
     int find_product_index(int id) const;
 
 public:
-    explicit Inventory(std::string file_name);
+    explicit Inventory(const std::string& file_name);
 
     ~Inventory();
 
