@@ -35,7 +35,7 @@ void Inventory::load_from_file() {
     file.close();
 }
 
-void Inventory::save_to_file() {
+void Inventory::save_to_file() const {
     std::ofstream file(file_name);
     if (!file.is_open()) {
         std::cout << "Ошибка сохранения файла!" << std::endl;
@@ -48,7 +48,7 @@ void Inventory::save_to_file() {
     file.close();
 }
 
-int Inventory::find_product_index(int id) {
+int Inventory::find_product_index(int id) const {
     for (int i = 0; i < product_count; i++) {
         if (products[i].id == id) return i;
     }
@@ -69,7 +69,8 @@ void Inventory::add_product() {
         return;
     }
 
-    int id, quantity;
+    int id;
+    int quantity;
     std::string name;
     double price;
 
@@ -96,7 +97,7 @@ void Inventory::add_product() {
     std::cout << "Товар добавлен!" << std::endl;
 }
 
-void Inventory::show_all() {
+void Inventory::show_all() const {
     if (product_count == 0) {
         std::cout << "Склад пуст!" << std::endl;
         return;
@@ -168,7 +169,7 @@ void Inventory::delete_product() {
         std::cout << "Товар не найден!" << std::endl;
         return;
     }
-    
+
     products[index].display();
 
     for (int i = index; i < product_count - 1; i++) {

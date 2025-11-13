@@ -14,20 +14,20 @@ private:
 
     void load_from_file();
 
-    void save_to_file();
+    void save_to_file() const;
 
-    int find_product_index(int id);
+    int find_product_index(int id) const;
 
 public:
-    Inventory(std::string file_name);
+    explicit Inventory(std::string file_name);
 
     ~Inventory();
 
     void add_product();
 
-    void show_all();
+    void show_all() const;
 
-    void find_product();
+    void find_product() ;
 
     void update_product();
 
