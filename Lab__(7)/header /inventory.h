@@ -23,6 +23,10 @@ public:
 
     ~Inventory();
 
+    Inventory(const Inventory&) = delete;
+
+    Inventory& operator=(const Inventory&) = delete;
+
     void add_product();
 
     void show_all() const;
