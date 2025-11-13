@@ -3,7 +3,7 @@
 
 MetalProduct::MetalProduct() : id(0), name(""), quantity(0), price(0.0) {}
 
-MetalProduct::MetalProduct(int id, std::string name, int quantity, double price)
+MetalProduct::MetalProduct(int id, const std::string& name, int quantity, double price)
         : id(id), name(name), quantity(quantity), price(price) {}
 
 void MetalProduct::display() const {
@@ -15,7 +15,10 @@ void MetalProduct::display() const {
 
 std::string MetalProduct::to_string() const {
     std::stringstream ss;
-    ss << id << "|" << name << "|" << quantity << "|" << std::fixed << std::setprecision(2) << price;
+    ss << id << "|" << name << "|" << quantity << "|";
+    ss.precision(2);
+    ss << std::fixed << price;
+
     return ss.str();
 }
 

@@ -14,7 +14,7 @@ struct MetalProduct {
 
     MetalProduct();
 
-    MetalProduct(int id, std::string name, int quantity, double price);
+    MetalProduct(int id, const std::string& name, int quantity, double price);
 
     void display() const;
 

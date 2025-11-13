@@ -21,7 +21,8 @@ void Inventory::load_from_file() {
         int token_count = 0;
 
         while (std::getline(ss, token, '|') && token_count < 4) {
-            tokens[token_count++] = token;
+            tokens[token_count] = token;
+            token_count++;
         }
 
         if (token_count == 4) {
@@ -30,7 +31,8 @@ void Inventory::load_from_file() {
             int quantity = std::stoi(tokens[2]);
             double price = std::stod(tokens[3]);
 
-            products[product_count++] = MetalProduct(id, name, quantity, price);
+            products[product_count] = MetalProduct(id, name, quantity, price);
+            product_count++;
         }
     }
     file.close();
@@ -93,7 +95,8 @@ void Inventory::add_product() {
     std::cout << "Введите цену: ";
     std::cin >> price;
 
-    products[product_count++] = MetalProduct(id, name, quantity, price);
+    products[product_count] = MetalProduct(id, name, quantity, price);
+    product_count++;
     save_to_file();
     std::cout << "Товар добавлен!" << std::endl;
 }
