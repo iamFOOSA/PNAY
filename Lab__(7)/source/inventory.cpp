@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
+#include <array>
 
 
 void Inventory::load_from_file() {
@@ -16,7 +17,7 @@ void Inventory::load_from_file() {
 
         std::stringstream ss(line);
         std::string token;
-        std::string tokens[4];
+        std::array<std::string, 4> tokens;
         int token_count = 0;
 
         while (std::getline(ss, token, '|') && token_count < 4) {
