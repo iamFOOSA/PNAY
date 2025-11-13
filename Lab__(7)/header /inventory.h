@@ -4,12 +4,13 @@
 
 #include "../header /metal_product.h"
 #include <string>
+#include <array>
 
 class Inventory {
 private:
     static const int MAX = 1000;
     std::string file_name;
-    MetalProduct products[MAX];
+    std::array<MetalProduct, MAX> products;
     int product_count;
 
     void load_from_file();
