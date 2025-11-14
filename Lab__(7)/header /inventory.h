@@ -10,8 +10,9 @@ class Inventory {
 private:
     static const int MAX = 1000;
     std::string file_name;
+
     std::array<MetalProduct, MAX> products;
-    int product_count;
+    int product_count = 0;
 
     void load_from_file();
 
