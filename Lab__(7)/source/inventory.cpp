@@ -57,7 +57,7 @@ int Inventory::find_product_index(int id) const {
     return -1;
 }
 
-Inventory::Inventory(const std::string& file_name) : file_name(file_name), product_count(0) {
+Inventory::Inventory(const std::string& file_name) : file_name(file_name) {
     load_from_file();
 }
 
