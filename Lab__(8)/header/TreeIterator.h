@@ -48,7 +48,7 @@ public:
     }
 
     bool operator!=(const TreeIterator &other) const {
-        return current_node != other.current_node;
+        return !(*this == other);
     }
 
     bool operator==(const TreeIterator &other) const {
