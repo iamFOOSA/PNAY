@@ -47,13 +47,10 @@ public:
         return *this;
     }
 
-    bool operator!=(const TreeIterator &other) const {
-        return !(*this == other);
-    }
-
     bool operator==(const TreeIterator &other) const {
         return current_node == other.current_node;
     }
+
 };
 
 
