@@ -31,7 +31,7 @@ private:
 
     TreeNode<T> *copy_recursive(TreeNode<T> *node) {
         if (!node) return nullptr;
-        TreeNode<T> *new_node = new TreeNode<T>(node->data);
+        auto new_node = new TreeNode<T>(node->data);
         new_node->left = copy_recursive(node->left);
         new_node->right = copy_recursive(node->right);
         return new_node;

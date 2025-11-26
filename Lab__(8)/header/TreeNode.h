@@ -5,10 +5,10 @@ template <typename T>
 class TreeNode {
 public:
     T data;
-    TreeNode* left;
-    TreeNode* right;
+    TreeNode* left = nullptr;
+    TreeNode* right = nullptr;
 
-    TreeNode(const T& value) : data(value), left(nullptr), right(nullptr) {}
+    explicit TreeNode(const T& value) : data(value) {}
 };
 
 #endif
